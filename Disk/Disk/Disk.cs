@@ -4,7 +4,9 @@ using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -22,7 +24,7 @@ namespace Disk
         {
             const int size = 512;
             char[] buffer = new char[size];
-            uint code = APIWin32.GetLogicalDriveStrings(size, buffer);
+            uint code = API.GetLogicalDriveStrings(size, buffer);
 
             if (code == 0)
             {
@@ -49,7 +51,7 @@ namespace Disk
                 ulong TotalNumberOfBytes;
                 ulong TotalNumberOfFreeBytes;
 
-                bool success = APIWin32.GetDiskFreeSpaceEx(s, out FreeBytesAvailable, out TotalNumberOfBytes, out TotalNumberOfFreeBytes);
+                bool success = API.GetDiskFreeSpaceEx(s, out FreeBytesAvailable, out TotalNumberOfBytes, out TotalNumberOfFreeBytes);
                 if (!success)
                     throw new System.ComponentModel.Win32Exception();
                 lbDisk.Items.Add(s);                
@@ -58,6 +60,27 @@ namespace Disk
                 lbDisk.Items.Add("Tổng số GB đã trống: " + TotalNumberOfFreeBytes / (1024 * 1024 * 1024));
                 lbDisk.Items.Add("");
             }            
+        }
+
+        private void btnCreateDirectory_Click(object sender, EventArgs e)
+        {
+            string path = @txbDD.Text;
+            if (!API.CreateDirectory(@"\\?\" + path, IntPtr.Zero))
+                MessageBox.Show("Lỗi đường dẫn hoặc đã tồn tại thư mục");
+        }
+
+        private void btnCreateFile_Click(object sender, EventArgs e)
+        {
+            IntPtr ptr = API.CreateFile(@"D:\new.txt", 3, 3, 0, 3, 0, 0);
+            if (ptr.ToInt32() == -1)
+            {
+                MessageBox.Show("Lỗi");
+            }     
+        }
+
+        private void btnTest_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

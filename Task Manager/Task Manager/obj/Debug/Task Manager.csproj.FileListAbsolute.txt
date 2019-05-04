@@ -17,4 +17,4 @@ D:\Lap Trinh By Ngon Phi\OS\API\BTL OS\Task Manager\Task Manager\obj\Debug\Task 
 D:\Lap Trinh By Ngon Phi\OS\API\BTL OS\Task Manager\Task Manager\obj\Debug\Task Manager.csproj.CoreCompileInputs.cache
 D:\Lap Trinh By Ngon Phi\OS\API\BTL OS\Task Manager\Task Manager\obj\Debug\Task Manager.exe
 D:\Lap Trinh By Ngon Phi\OS\API\BTL OS\Task Manager\Task Manager\obj\Debug\Task Manager.pdb
-D:\Lap Trinh By Ngon Phi\OS\API\BTL OS\Task Manager\Task Manager\obj\Debug\Task_Manager.FormTaskManager.resources
+D:\Lap Trinh By Ngon Phi\OS\API\BTL OS\Task Manager\Task Manager\obj\Debug\Task_Manager.API.resources

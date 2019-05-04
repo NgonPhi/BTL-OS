@@ -46,7 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="APIWin32.cs" />
+    <Compile Include="API.cs" />
     <Compile Include="Disk.cs">
       <SubType>Form</SubType>
     </Compile>

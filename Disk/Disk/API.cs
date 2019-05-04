@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 
 namespace Disk
 {
-    public class APIWin32
+    class API
     {
         [DllImport("kernel32.dll")]
         public static extern uint GetLogicalDriveStrings(uint nBufferLength, [Out] char[] lpBuffer);
@@ -18,5 +18,16 @@ namespace Disk
                                        out ulong lpFreeBytesAvailable,
                                        out ulong lpTotalNumberOfBytes,
                                        out ulong lpTotalNumberOfFreeBytes);
+
+        [DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
+        public static extern bool CreateDirectory(string lpPathName, IntPtr lpSecurityAttributes);
+
+        [DllImport("kernel32.dll", SetLastError = true)]
+        public static extern IntPtr CreateFile(string lpFileName, uint dwDesiredAccess,
+                                        uint dwShareMode,
+                                        int lpSecurityAttributes,
+                                        uint dwCreationDisposition,
+                                        uint dwFlagsAndAttributes,
+                                        int hTemplateFile);
     }
 }

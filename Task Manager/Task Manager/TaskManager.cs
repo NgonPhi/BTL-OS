@@ -9,11 +9,72 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
 
 namespace Task_Manager
 {
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct PROCESS_INFORMATION
+    {
+        public IntPtr hProcess;
+        public IntPtr hThread;
+        public int dwProcessId;
+        public int dwThreadId;
+    }
+
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
+    public struct STARTUPINFO
+    {
+        public Int32 cb;
+        public string lpReserved;
+        public string lpDesktop;
+        public string lpTitle;
+        public Int32 dwX;
+        public Int32 dwY;
+        public Int32 dwXSize;
+        public Int32 dwYSize;
+        public Int32 dwXCountChars;
+        public Int32 dwYCountChars;
+        public Int32 dwFillAttribute;
+        public Int32 dwFlags;
+        public Int16 wShowWindow;
+        public Int16 cbReserved2;
+        public IntPtr lpReserved2;
+        public IntPtr hStdInput;
+        public IntPtr hStdOutput;
+        public IntPtr hStdError;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    public struct SECURITY_ATTRIBUTES
+    {
+        public int nLength;
+        public IntPtr lpSecurityDescriptor;
+        public int bInheritHandle;
+    }
+
+    public class API
+    {
+        [DllImport("user32.dll", EntryPoint = "MessageBox")]
+        // Oke --> 1 and Cancel --> 2
+        public static extern int MessageBox(int hwnd, string lpText, string lpCaption, int wType);        
+    }
+
     public partial class FormTaskManager : Form
     {
+        [DllImport("kernel32.dll", SetLastError = true, CharSet = CharSet.Auto)]
+        static extern bool CreateProcess(
+                           string lpApplicationName,
+                           string lpCommandLine,
+                           ref SECURITY_ATTRIBUTES lpProcessAttributes,
+                           ref SECURITY_ATTRIBUTES lpThreadAttributes,
+                           bool bInheritHandles,
+                           uint dwCreationFlags,
+                           IntPtr lpEnvironment,
+                           string lpCurrentDirectory,
+                           [In] ref STARTUPINFO lpStartupInfo,
+                           out PROCESS_INFORMATION lpProcessInformation);
+
         public FormTaskManager()
         {
             InitializeComponent();
@@ -44,7 +105,7 @@ namespace Task_Manager
             }
             else
             {
-                int result = APIWin32.MessageBox(0, "Ban co muon xoa tien trinh nay khong ?", "Message", 1);
+                int result = API.MessageBox(0, "Ban co muon xoa tien trinh nay khong ?", "Message", 1);
                 if (result == 1)
                     procs[index].Kill();
             }
@@ -107,6 +168,28 @@ namespace Task_Manager
         private void btnKillProcess_Click(object sender, EventArgs e)
         {
             KillProcess(lbxProcess.SelectedIndex);
+        }
+        
+        private void btnTest_Click(object sender, EventArgs e)
+        {
+            const uint NORMAL_PRIORITY_CLASS = 0x0020;
+
+            bool retValue;
+            string Application = Environment.GetEnvironmentVariable("windir") + @"\Notepad.exe";
+            string CommandLine = @"";
+            PROCESS_INFORMATION pInfo = new PROCESS_INFORMATION();
+            STARTUPINFO sInfo = new STARTUPINFO();
+            SECURITY_ATTRIBUTES pSec = new SECURITY_ATTRIBUTES();
+            SECURITY_ATTRIBUTES tSec = new SECURITY_ATTRIBUTES();
+            pSec.nLength = Marshal.SizeOf(pSec);
+            tSec.nLength = Marshal.SizeOf(tSec);
+
+            retValue = CreateProcess(Application, CommandLine,
+            ref pSec, ref tSec, false, NORMAL_PRIORITY_CLASS,
+            IntPtr.Zero, null, ref sInfo, out pInfo);
+
+            Console.WriteLine("Process ID (PID): " + pInfo.dwProcessId);
+            Console.WriteLine("Process Handle : " + pInfo.hProcess);
         }
     }
 
