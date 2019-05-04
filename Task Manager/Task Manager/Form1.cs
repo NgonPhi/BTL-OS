@@ -12,9 +12,9 @@ using System.Diagnostics;
 
 namespace Task_Manager
 {
-    public partial class Form1 : Form
+    public partial class FormTaskManager : Form
     {
-        public Form1()
+        public FormTaskManager()
         {
             InitializeComponent();
         }
@@ -30,26 +30,31 @@ namespace Task_Manager
                 for (int i = 0; i < procs.Length; i++)
                 {
                     lbxProcess.Items.Add("> " + procs[i].ProcessName); // Tạo danh sách tương tự task manager
-                }                
+                }
             }
             lbProcess.Text = procs.Length.ToString();
         }
 
         private void KillProcess(int index)
         {
-            if(index < 0 || index >= procs.Length) //TH khi không chọn item
+            if (index < 0 || index >= procs.Length) //TH khi không chọn item
             {
                 MessageBox.Show("Out Size");
                 return;
             }
-            procs[index].WaitForExit(3000); //Đợi 3s rồi tắt
-            procs[index].Kill();
+            else
+            {
+                int result = APIWin32.MessageBox(0, "Ban co muon xoa tien trinh nay khong ?", "Message", 1);
+                if(result == 1)
+                    procs[index].Kill();
+            }
+            
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             GetProcesses();
-        }        
+        }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -71,33 +76,32 @@ namespace Task_Manager
 
             try
             {
-                switch (loai)
+                if (loai == 0)
                 {
-                    //Nếu ứng dụng / tệp tin
-                    case 0:
-                        if (tt == "")
-                            Process.Start(ud);
-                        // Mở file = ứng dụng mặc định
-                        else if(ud == "")
-                            Process.Start(tt);
-                        else
-                            Process.Start(ud, tt);
-                        break;
-                    //Nếu web
-                    case 1:
-                        // Trình duyệt mặc định
-                        if (ud == "")
-                            Process.Start(@link);
-                        else
-                            Process.Start(ud, @link);
-                        break;
+                    if (tt == "")
+                        Process.Start(ud);
+                    // Mở file = ứng dụng mặc định
+                    else if (ud == "")
+                        Process.Start(tt);
+                    else
+                    {
+                        Process.Start(ud, tt);
+                    }
+                }
+                else if (loai == 1)
+                {
+                    // Trình duyệt mặc định
+                    if (ud == "")
+                        Process.Start(@link);
+                    else
+                        Process.Start(ud, @link);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error");
+                MessageBox.Show("Error :" + ex.Message);
             }
-            
+
         }
 
         private void btnKillProcess_Click(object sender, EventArgs e)
@@ -105,4 +109,5 @@ namespace Task_Manager
             KillProcess(lbxProcess.SelectedIndex);
         }
     }
+
 }

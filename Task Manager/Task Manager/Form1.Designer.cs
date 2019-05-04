@@ -1,6 +1,6 @@
 ﻿namespace Task_Manager
 {
-    partial class Form1
+    partial class FormTaskManager
     {
         /// <summary>
         /// Required designer variable.
@@ -45,7 +45,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.lbTimeKill = new System.Windows.Forms.Label();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -187,23 +186,11 @@
             this.label5.TabIndex = 17;
             this.label5.Text = "Nhập đường dẫn / tên ";
             // 
-            // lbTimeKill
-            // 
-            this.lbTimeKill.AutoSize = true;
-            this.lbTimeKill.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTimeKill.ForeColor = System.Drawing.Color.Red;
-            this.lbTimeKill.Location = new System.Drawing.Point(233, 274);
-            this.lbTimeKill.Name = "lbTimeKill";
-            this.lbTimeKill.Size = new System.Drawing.Size(47, 52);
-            this.lbTimeKill.TabIndex = 18;
-            this.lbTimeKill.Text = "0";
-            // 
-            // Form1
+            // FormTaskManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(482, 450);
-            this.Controls.Add(this.lbTimeKill);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -217,8 +204,8 @@
             this.Controls.Add(this.btnCreateProcess);
             this.Controls.Add(this.lbProcess);
             this.Controls.Add(this.lbxProcess);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "FormTaskManager";
+            this.Text = "Task Manager";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -244,7 +231,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label lbTimeKill;
     }
 }
 
