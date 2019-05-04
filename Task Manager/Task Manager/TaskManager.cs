@@ -45,10 +45,10 @@ namespace Task_Manager
             else
             {
                 int result = APIWin32.MessageBox(0, "Ban co muon xoa tien trinh nay khong ?", "Message", 1);
-                if(result == 1)
+                if (result == 1)
                     procs[index].Kill();
             }
-            
+
         }
 
         private void Form1_Load(object sender, EventArgs e)

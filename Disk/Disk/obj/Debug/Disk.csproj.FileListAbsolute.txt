@@ -1,0 +1,10 @@
+D:\Lap Trinh By Ngon Phi\OS\API\BTL OS\Disk\Disk\bin\Debug\Disk.exe.config
+D:\Lap Trinh By Ngon Phi\OS\API\BTL OS\Disk\Disk\bin\Debug\Disk.exe
+D:\Lap Trinh By Ngon Phi\OS\API\BTL OS\Disk\Disk\bin\Debug\Disk.pdb
+D:\Lap Trinh By Ngon Phi\OS\API\BTL OS\Disk\Disk\obj\Debug\Disk.Disk.resources
+D:\Lap Trinh By Ngon Phi\OS\API\BTL OS\Disk\Disk\obj\Debug\Disk.Properties.Resources.resources
+D:\Lap Trinh By Ngon Phi\OS\API\BTL OS\Disk\Disk\obj\Debug\Disk.csproj.GenerateResource.cache
+D:\Lap Trinh By Ngon Phi\OS\API\BTL OS\Disk\Disk\obj\Debug\Disk.csproj.CoreCompileInputs.cache
+D:\Lap Trinh By Ngon Phi\OS\API\BTL OS\Disk\Disk\obj\Debug\Disk.exe
+D:\Lap Trinh By Ngon Phi\OS\API\BTL OS\Disk\Disk\obj\Debug\Disk.pdb
+D:\Lap Trinh By Ngon Phi\OS\API\BTL OS\Disk\Disk\obj\Debug\Disk.csprojAssemblyReference.cache
