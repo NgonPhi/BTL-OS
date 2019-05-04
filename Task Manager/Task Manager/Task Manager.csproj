@@ -46,7 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="TaskManager.cs" />
+    <Compile Include="TaskManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="TaskManager.Designer.cs">
       <DependentUpon>TaskManager.cs</DependentUpon>
     </Compile>

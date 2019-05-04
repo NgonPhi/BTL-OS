@@ -52,16 +52,14 @@ namespace Task_Manager
         public IntPtr lpSecurityDescriptor;
         public int bInheritHandle;
     }
-
-    public class API
-    {
-        [DllImport("user32.dll", EntryPoint = "MessageBox")]
-        // Oke --> 1 and Cancel --> 2
-        public static extern int MessageBox(int hwnd, string lpText, string lpCaption, int wType);        
-    }
-
     public partial class FormTaskManager : Form
     {
+        class API
+        {
+            [DllImport("user32.dll", EntryPoint = "MessageBox")]
+            // type:0 --> Oke --> 1 and Cancel --> 2
+            public static extern int MessageBox(int hwnd, string lpText, string lpCaption, int wType);
+        }
         [DllImport("kernel32.dll", SetLastError = true, CharSet = CharSet.Auto)]
         static extern bool CreateProcess(
                            string lpApplicationName,

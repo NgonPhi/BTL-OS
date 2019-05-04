@@ -73,7 +73,7 @@
             // 
             // btnCreateFile
             // 
-            this.btnCreateFile.Location = new System.Drawing.Point(720, 160);
+            this.btnCreateFile.Location = new System.Drawing.Point(720, 313);
             this.btnCreateFile.Name = "btnCreateFile";
             this.btnCreateFile.Size = new System.Drawing.Size(94, 38);
             this.btnCreateFile.TabIndex = 4;
@@ -83,7 +83,7 @@
             // 
             // btnTest
             // 
-            this.btnTest.Location = new System.Drawing.Point(674, 370);
+            this.btnTest.Location = new System.Drawing.Point(739, 403);
             this.btnTest.Name = "btnTest";
             this.btnTest.Size = new System.Drawing.Size(75, 23);
             this.btnTest.TabIndex = 5;
