@@ -17,9 +17,15 @@ namespace Disk
     {
         class API
         {
+            // Hàm hiển thị thông báo : type : 0 (OK) / 1 (OK - Cancel)
+            [DllImport("user32.dll", EntryPoint = "MessageBox")]
+            public static extern int ShowMessage(int hWnd, string text, string caption, uint type);
+
+            // Hàm lấy danh sách tên phân vùng ổ đĩa
             [DllImport("kernel32.dll")]
             public static extern uint GetLogicalDriveStrings(uint nBufferLength, [Out] char[] lpBuffer);
 
+            // Hàm lấy thông số phân vùng ổ đĩa theo tên
             [DllImport("kernel32.dll", SetLastError = true, CharSet = CharSet.Auto)]
             [return: MarshalAs(UnmanagedType.Bool)]
             public static extern bool GetDiskFreeSpaceEx(string lpDirectoryName,
@@ -27,16 +33,41 @@ namespace Disk
                                            out ulong lpTotalNumberOfBytes,
                                            out ulong lpTotalNumberOfFreeBytes);
 
+            // Hàm tạo thư mục theo đường dẫn
             [DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
             public static extern bool CreateDirectory(string lpPathName, IntPtr lpSecurityAttributes);
 
-            [DllImport("kernel32.dll", SetLastError = true)]
-            public static extern IntPtr CreateFile(string lpFileName, uint dwDesiredAccess,
-                                            uint dwShareMode,
-                                            int lpSecurityAttributes,
-                                            uint dwCreationDisposition,
-                                            uint dwFlagsAndAttributes,
-                                            int hTemplateFile);
+
+            // Test
+            [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+            public static extern IntPtr CreateFile(
+                 [MarshalAs(UnmanagedType.LPTStr)] string filename,
+                 [MarshalAs(UnmanagedType.U4)] FileAccess access,
+                 [MarshalAs(UnmanagedType.U4)] FileShare share,
+                 IntPtr securityAttributes, // optional SECURITY_ATTRIBUTES struct or IntPtr.Zero
+                 [MarshalAs(UnmanagedType.U4)] FileMode creationDisposition,
+                 [MarshalAs(UnmanagedType.U4)] FileAttributes flagsAndAttributes,
+                 IntPtr templateFile);
+
+            [DllImport("kernel32.dll", CharSet = CharSet.Ansi, SetLastError = true)]
+            public static extern IntPtr CreateFileA(
+                 [MarshalAs(UnmanagedType.LPStr)] string filename,
+                 [MarshalAs(UnmanagedType.U4)] FileAccess access,
+                 [MarshalAs(UnmanagedType.U4)] FileShare share,
+                 IntPtr securityAttributes,
+                 [MarshalAs(UnmanagedType.U4)] FileMode creationDisposition,
+                 [MarshalAs(UnmanagedType.U4)] FileAttributes flagsAndAttributes,
+                 IntPtr templateFile);
+
+            [DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
+            public static extern IntPtr CreateFileW(
+                 [MarshalAs(UnmanagedType.LPWStr)] string filename,
+                 [MarshalAs(UnmanagedType.U4)] FileAccess access,
+                 [MarshalAs(UnmanagedType.U4)] FileShare share,
+                 IntPtr securityAttributes,
+                 [MarshalAs(UnmanagedType.U4)] FileMode creationDisposition,
+                 [MarshalAs(UnmanagedType.U4)] FileAttributes flagsAndAttributes,
+                 IntPtr templateFile);
         }
 
         public Disk()
@@ -52,7 +83,7 @@ namespace Disk
 
             if (code == 0)
             {
-                MessageBox.Show("Error");
+                API.ShowMessage(0, "Loi lay danh sach ten phan vung o dia !", "Thong bao", 0);
                 return;
             }
 
@@ -68,7 +99,7 @@ namespace Disk
                 }
             }
 
-            lbDisk.Items.Clear();
+            int x = 0;
             foreach (string s in list)
             {
                 ulong FreeBytesAvailable;
@@ -78,33 +109,34 @@ namespace Disk
                 bool success = API.GetDiskFreeSpaceEx(s, out FreeBytesAvailable, out TotalNumberOfBytes, out TotalNumberOfFreeBytes);
                 if (!success)
                     throw new System.ComponentModel.Win32Exception();
-                lbDisk.Items.Add(s);                
-                lbDisk.Items.Add("Tổng số GB: " + FreeBytesAvailable / (1024 * 1024 * 1024));
-                lbDisk.Items.Add("Tống số GB đã dùng: " + TotalNumberOfBytes / (1024 * 1024 * 1024));
-                lbDisk.Items.Add("Tổng số GB đã trống: " + TotalNumberOfFreeBytes / (1024 * 1024 * 1024));
-                lbDisk.Items.Add("");
-            }            
+                Button btn = new Button();
+                btn.Name = "btn" + x;
+                btn.Size = new System.Drawing.Size(200, 100);
+                btn.Text = s + "\n " + TotalNumberOfFreeBytes / (1024 * 1024 * 1024) + " GB free of " + TotalNumberOfBytes / (1024 * 1024 * 1024) + " GB";
+                pnlDisk.Controls.Add(btn);
+            }
         }
 
         private void btnCreateDirectory_Click(object sender, EventArgs e)
         {
             string path = @txbDD.Text;
             if (!API.CreateDirectory(@"\\?\" + path, IntPtr.Zero))
-                MessageBox.Show("Lỗi đường dẫn hoặc đã tồn tại thư mục");
+                API.ShowMessage(0, "Loi duong dan / ton tai thu muc !", "Thong bao", 0);
         }
 
         private void btnCreateFile_Click(object sender, EventArgs e)
         {
-            IntPtr ptr = API.CreateFile(@"D:\new.txt", 3, 3, 0, 3, 0, 0);
-            if (ptr.ToInt32() == -1)
-            {
-                MessageBox.Show("Lỗi");
-            }     
-        }
-
-        private void btnTest_Click(object sender, EventArgs e)
-        {
-
+            //IntPtr ptr = API.CreateFile(filename, access, share, 0, mode, 0, IntPtr.Zero);
+            ///* Is bad handle? INVALID_HANDLE_VALUE */
+            //if (ptr.ToInt32() == -1)
+            //{
+            //    /* ask the framework to marshall the win32 error code to an exception */
+            //    Marshal.ThrowExceptionForHR(Marshal.GetHRForLastWin32Error());
+            //}
+            //else
+            //{
+            //    return new FileStream(ptr, access);
+            //}
         }
     }
 }

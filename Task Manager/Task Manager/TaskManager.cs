@@ -13,65 +13,68 @@ using System.Runtime.InteropServices;
 
 namespace Task_Manager
 {
-    [StructLayout(LayoutKind.Sequential)]
-    internal struct PROCESS_INFORMATION
+    public struct PROCESS_INFORMATION
     {
         public IntPtr hProcess;
         public IntPtr hThread;
-        public int dwProcessId;
-        public int dwThreadId;
+        public uint dwProcessId;
+        public uint dwThreadId;
     }
-
-    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
     public struct STARTUPINFO
     {
-        public Int32 cb;
+        public uint cb;
         public string lpReserved;
         public string lpDesktop;
         public string lpTitle;
-        public Int32 dwX;
-        public Int32 dwY;
-        public Int32 dwXSize;
-        public Int32 dwYSize;
-        public Int32 dwXCountChars;
-        public Int32 dwYCountChars;
-        public Int32 dwFillAttribute;
-        public Int32 dwFlags;
-        public Int16 wShowWindow;
-        public Int16 cbReserved2;
+        public uint dwX;
+        public uint dwY;
+        public uint dwXSize;
+        public uint dwYSize;
+        public uint dwXCountChars;
+        public uint dwYCountChars;
+        public uint dwFillAttribute;
+        public uint dwFlags;
+        public short wShowWindow;
+        public short cbReserved2;
         public IntPtr lpReserved2;
         public IntPtr hStdInput;
         public IntPtr hStdOutput;
         public IntPtr hStdError;
     }
-
-    [StructLayout(LayoutKind.Sequential)]
     public struct SECURITY_ATTRIBUTES
     {
-        public int nLength;
+        public int length;
         public IntPtr lpSecurityDescriptor;
-        public int bInheritHandle;
+        public bool bInheritHandle;
     }
+
     public partial class FormTaskManager : Form
     {
         class API
         {
+            // Hàm hiển thị thông báo : type : 0 (OK) / 1 (OK - Cancel)
             [DllImport("user32.dll", EntryPoint = "MessageBox")]
-            // type:0 --> Oke --> 1 and Cancel --> 2
-            public static extern int MessageBox(int hwnd, string lpText, string lpCaption, int wType);
-        }
-        [DllImport("kernel32.dll", SetLastError = true, CharSet = CharSet.Auto)]
-        static extern bool CreateProcess(
-                           string lpApplicationName,
-                           string lpCommandLine,
-                           ref SECURITY_ATTRIBUTES lpProcessAttributes,
-                           ref SECURITY_ATTRIBUTES lpThreadAttributes,
-                           bool bInheritHandles,
-                           uint dwCreationFlags,
-                           IntPtr lpEnvironment,
-                           string lpCurrentDirectory,
-                           [In] ref STARTUPINFO lpStartupInfo,
-                           out PROCESS_INFORMATION lpProcessInformation);
+            public static extern int ShowMessage(int hWnd, string text, string caption, uint type);
+
+            // Hàm tạo process theo đường dẫn tới ứng dụng
+            [DllImport("kernel32.dll")]
+            public static extern bool CreateProcess(string lpApplicationName, string lpCommandLine, IntPtr lpProcessAttributes, IntPtr lpThreadAttributes,
+                            bool bInheritHandles, uint dwCreationFlags, IntPtr lpEnvironment,
+                            string lpCurrentDirectory, ref STARTUPINFO lpStartupInfo, out PROCESS_INFORMATION lpProcessInformation);
+
+            // Hàm lấy thông số process (Time) theo process handle
+            [DllImport("Kernel32",
+                       EntryPoint = "GetProcessTimes",
+                       ExactSpelling = true,
+                       CharSet = CharSet.Ansi,
+                       SetLastError = true)]
+            public static extern bool GetProcessTimes(
+                                IntPtr hProcess,
+                                ref long lpCreationTime,
+                                ref long lpExitTime,
+                                ref long lpKernelTime,
+                                ref long lpUserTime);
+        }                
 
         public FormTaskManager()
         {
@@ -98,12 +101,12 @@ namespace Task_Manager
         {
             if (index < 0 || index >= procs.Length) //TH khi không chọn item
             {
-                MessageBox.Show("Out Size");
+                API.ShowMessage(0, "Loi khong chon item !", "Thong bao", 0);
                 return;
             }
             else
             {
-                int result = API.MessageBox(0, "Ban co muon xoa tien trinh nay khong ?", "Message", 1);
+                int result = API.ShowMessage(0, "Ban co muon xoa tien trinh nay khong ?", "Message", 1);
                 if (result == 1)
                     procs[index].Kill();
             }
@@ -124,70 +127,75 @@ namespace Task_Manager
         {
             KillProcess(lbxProcess.SelectedIndex);
         }
-
-        // Tương tự window run(window + R)
+        
         private void btnCreateProcess_Click(object sender, EventArgs e)
         {
-            string ud = tbUD.Text;
-            string tt = tbTT.Text;
-            string link = tbLink.Text;
-            int loai = cbbLoai.SelectedIndex;
-
-            try
-            {
-                if (loai == 0)
-                {
-                    if (tt == "")
-                        Process.Start(ud);
-                    // Mở file = ứng dụng mặc định
-                    else if (ud == "")
-                        Process.Start(tt);
-                    else
-                    {
-                        Process.Start(ud, tt);
-                    }
-                }
-                else if (loai == 1)
-                {
-                    // Trình duyệt mặc định
-                    if (ud == "")
-                        Process.Start(@link);
-                    else
-                        Process.Start(ud, @link);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error :" + ex.Message);
-            }
-
+            string path = tbPath.Text;
+            STARTUPINFO si = new STARTUPINFO();
+            PROCESS_INFORMATION pi = new PROCESS_INFORMATION();
+            if (!API.CreateProcess(@path, null, IntPtr.Zero, IntPtr.Zero, false, 0, IntPtr.Zero, null, ref si, out pi))
+                API.ShowMessage(0, "Loi duong dan !", "Thong bao", 0);
         }
 
         private void btnKillProcess_Click(object sender, EventArgs e)
         {
             KillProcess(lbxProcess.SelectedIndex);
+        }       
+
+        private void GetProcessTimes(int index)
+        {
+            try
+            {
+                if (index < 0 || index >= procs.Length) //TH khi không chọn item
+                {
+                    API.ShowMessage(0, "Loi khong chon item !", "Thong bao", 0);
+                    return;
+                }
+                else
+                {
+                    lbInformation.Items.Clear();
+                    long lpCreationTime = 0;
+                    long lpExitTime = 0;
+                    long lpKernelTime = 0;
+                    long lpUserTime = 0;
+                    Process P = procs[index];
+                    bool RetVal = API.GetProcessTimes(P.Handle, ref lpCreationTime, ref lpExitTime, ref lpKernelTime, ref lpUserTime);
+                    lbInformation.Items.Add("Handle" + P.Handle.ToString() + " ");
+                    lbInformation.Items.Add("Creation Time" + lpCreationTime.ToString() + " ");
+                    lbInformation.Items.Add("Kernel Time" + lpKernelTime.ToString() + " ");
+                    lbInformation.Items.Add("User Time" + lpUserTime);
+                    lbInformation.Items.Add("Start Time Tick" + (P.StartTime.Ticks - DateTime.Parse("1/1/1601").Ticks).ToString() + " ");
+                    lbInformation.Items.Add("Privileged Processor Time" + P.PrivilegedProcessorTime.Ticks.ToString() + " ");
+                    lbInformation.Items.Add("User Processor Time" + P.UserProcessorTime.Ticks.ToString() + " ");
+                }
+            }
+            catch(Exception ex)
+            {
+                API.ShowMessage(0, "Loi: " + ex.Message, "Thong bao", 0);
+            }
         }
-        
+
+        private void getProcssTimesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GetProcessTimes(lbxProcess.SelectedIndex);            
+        }
+
+        private void btnTaoProcess_Click(object sender, EventArgs e)
+        {
+            string path = tbPath.Text;
+            STARTUPINFO si = new STARTUPINFO();
+            PROCESS_INFORMATION pi = new PROCESS_INFORMATION();
+            API.CreateProcess(@path, null, IntPtr.Zero, IntPtr.Zero, false, 0, IntPtr.Zero, null, ref si, out pi);
+        }        
+
+        private void btnGetProcessTime_Click(object sender, EventArgs e)
+        {
+            GetProcessTimes(lbxProcess.SelectedIndex);
+        }
+
         private void btnTest_Click(object sender, EventArgs e)
         {
-            const uint NORMAL_PRIORITY_CLASS = 0x0020;
 
-            bool retValue;
-            string Application = Environment.GetEnvironmentVariable("windir") + @"\Notepad.exe";
-            string CommandLine = @"";
-            PROCESS_INFORMATION pInfo = new PROCESS_INFORMATION();
-            STARTUPINFO sInfo = new STARTUPINFO();
-            SECURITY_ATTRIBUTES pSec = new SECURITY_ATTRIBUTES();
-            SECURITY_ATTRIBUTES tSec = new SECURITY_ATTRIBUTES();
-            pSec.nLength = Marshal.SizeOf(pSec);
-            tSec.nLength = Marshal.SizeOf(tSec);
-
-            retValue = CreateProcess(Application, CommandLine,
-            ref pSec, ref tSec, false, NORMAL_PRIORITY_CLASS,
-            IntPtr.Zero, null, ref sInfo, out pInfo);
-
-            Console.WriteLine("Process ID (PID): " + pInfo.dwProcessId);
-            Console.WriteLine("Process Handle : " + pInfo.hProcess);
         }
     }
 

@@ -32,20 +32,18 @@
             this.lbxProcess = new System.Windows.Forms.ListBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.killProcessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.getProcssTimesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lbProcess = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.btnCreateProcess = new System.Windows.Forms.Button();
-            this.tbUD = new System.Windows.Forms.TextBox();
-            this.cbbLoai = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.tbTT = new System.Windows.Forms.TextBox();
-            this.tbLink = new System.Windows.Forms.TextBox();
             this.btnKillProcess = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.btnTest = new System.Windows.Forms.Button();
+            this.lbInformation = new System.Windows.Forms.ListBox();
+            this.btnGetProcessTime = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.tbPath = new System.Windows.Forms.TextBox();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -63,16 +61,24 @@
             // 
             this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.killProcessToolStripMenuItem});
+            this.killProcessToolStripMenuItem,
+            this.getProcssTimesToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 28);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(190, 52);
             // 
             // killProcessToolStripMenuItem
             // 
             this.killProcessToolStripMenuItem.Name = "killProcessToolStripMenuItem";
-            this.killProcessToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+            this.killProcessToolStripMenuItem.Size = new System.Drawing.Size(189, 24);
             this.killProcessToolStripMenuItem.Text = "Kill Process";
             this.killProcessToolStripMenuItem.Click += new System.EventHandler(this.killProcessToolStripMenuItem_Click);
+            // 
+            // getProcssTimesToolStripMenuItem
+            // 
+            this.getProcssTimesToolStripMenuItem.Name = "getProcssTimesToolStripMenuItem";
+            this.getProcssTimesToolStripMenuItem.Size = new System.Drawing.Size(189, 24);
+            this.getProcssTimesToolStripMenuItem.Text = "Get Procss Times";
+            this.getProcssTimesToolStripMenuItem.Click += new System.EventHandler(this.getProcssTimesToolStripMenuItem_Click);
             // 
             // lbProcess
             // 
@@ -91,32 +97,13 @@
             // 
             // btnCreateProcess
             // 
-            this.btnCreateProcess.Location = new System.Drawing.Point(312, 252);
+            this.btnCreateProcess.Location = new System.Drawing.Point(395, 75);
             this.btnCreateProcess.Name = "btnCreateProcess";
             this.btnCreateProcess.Size = new System.Drawing.Size(132, 25);
             this.btnCreateProcess.TabIndex = 4;
             this.btnCreateProcess.Text = "Create Process";
             this.btnCreateProcess.UseVisualStyleBackColor = true;
             this.btnCreateProcess.Click += new System.EventHandler(this.btnCreateProcess_Click);
-            // 
-            // tbUD
-            // 
-            this.tbUD.Location = new System.Drawing.Point(312, 46);
-            this.tbUD.Name = "tbUD";
-            this.tbUD.Size = new System.Drawing.Size(132, 22);
-            this.tbUD.TabIndex = 5;
-            // 
-            // cbbLoai
-            // 
-            this.cbbLoai.FormattingEnabled = true;
-            this.cbbLoai.Items.AddRange(new object[] {
-            "UD / TT",
-            "Web"});
-            this.cbbLoai.Location = new System.Drawing.Point(312, 199);
-            this.cbbLoai.Name = "cbbLoai";
-            this.cbbLoai.Size = new System.Drawing.Size(132, 24);
-            this.cbbLoai.TabIndex = 6;
-            this.cbbLoai.Text = "Lựa chọn loại";
             // 
             // label2
             // 
@@ -127,69 +114,28 @@
             this.label2.TabIndex = 8;
             this.label2.Text = "Danh Sách Process: ";
             // 
-            // tbTT
-            // 
-            this.tbTT.Location = new System.Drawing.Point(312, 96);
-            this.tbTT.Name = "tbTT";
-            this.tbTT.Size = new System.Drawing.Size(132, 22);
-            this.tbTT.TabIndex = 10;
-            // 
-            // tbLink
-            // 
-            this.tbLink.Location = new System.Drawing.Point(312, 153);
-            this.tbLink.Name = "tbLink";
-            this.tbLink.Size = new System.Drawing.Size(132, 22);
-            this.tbLink.TabIndex = 12;
-            // 
             // btnKillProcess
             // 
-            this.btnKillProcess.Location = new System.Drawing.Point(312, 301);
+            this.btnKillProcess.Location = new System.Drawing.Point(379, 255);
             this.btnKillProcess.Name = "btnKillProcess";
-            this.btnKillProcess.Size = new System.Drawing.Size(132, 25);
+            this.btnKillProcess.Size = new System.Drawing.Size(146, 25);
             this.btnKillProcess.TabIndex = 13;
             this.btnKillProcess.Text = "Kill Process";
             this.btnKillProcess.UseVisualStyleBackColor = true;
             this.btnKillProcess.Click += new System.EventHandler(this.btnKillProcess_Click);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(224, 46);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(74, 17);
-            this.label1.TabIndex = 14;
-            this.label1.Text = "Ứng dụng:";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(224, 99);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(56, 17);
-            this.label3.TabIndex = 15;
-            this.label3.Text = "Tệp tin:";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(232, 158);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(38, 17);
-            this.label4.TabIndex = 16;
-            this.label4.Text = "Link:";
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(224, 15);
+            this.label5.Location = new System.Drawing.Point(238, 47);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(150, 17);
+            this.label5.Size = new System.Drawing.Size(114, 17);
             this.label5.TabIndex = 17;
-            this.label5.Text = "Nhập đường dẫn / tên ";
+            this.label5.Text = "Nhập đường dẫn";
             // 
             // btnTest
             // 
-            this.btnTest.Location = new System.Drawing.Point(638, 301);
+            this.btnTest.Location = new System.Drawing.Point(593, 141);
             this.btnTest.Name = "btnTest";
             this.btnTest.Size = new System.Drawing.Size(75, 23);
             this.btnTest.TabIndex = 19;
@@ -197,22 +143,54 @@
             this.btnTest.UseVisualStyleBackColor = true;
             this.btnTest.Click += new System.EventHandler(this.btnTest_Click);
             // 
+            // lbInformation
+            // 
+            this.lbInformation.FormattingEnabled = true;
+            this.lbInformation.ItemHeight = 16;
+            this.lbInformation.Location = new System.Drawing.Point(227, 315);
+            this.lbInformation.Name = "lbInformation";
+            this.lbInformation.Size = new System.Drawing.Size(300, 132);
+            this.lbInformation.TabIndex = 20;
+            // 
+            // btnGetProcessTime
+            // 
+            this.btnGetProcessTime.Location = new System.Drawing.Point(227, 257);
+            this.btnGetProcessTime.Name = "btnGetProcessTime";
+            this.btnGetProcessTime.Size = new System.Drawing.Size(146, 23);
+            this.btnGetProcessTime.TabIndex = 21;
+            this.btnGetProcessTime.Text = "Get Process Time";
+            this.btnGetProcessTime.UseVisualStyleBackColor = true;
+            this.btnGetProcessTime.Click += new System.EventHandler(this.btnGetProcessTime_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(224, 283);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(105, 17);
+            this.label6.TabIndex = 22;
+            this.label6.Text = "Process Times:";
+            // 
+            // tbPath
+            // 
+            this.tbPath.Location = new System.Drawing.Point(241, 75);
+            this.tbPath.Name = "tbPath";
+            this.tbPath.Size = new System.Drawing.Size(132, 22);
+            this.tbPath.TabIndex = 24;
+            // 
             // FormTaskManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(745, 450);
+            this.ClientSize = new System.Drawing.Size(721, 450);
+            this.Controls.Add(this.tbPath);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.btnGetProcessTime);
+            this.Controls.Add(this.lbInformation);
             this.Controls.Add(this.btnTest);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnKillProcess);
-            this.Controls.Add(this.tbLink);
-            this.Controls.Add(this.tbTT);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.cbbLoai);
-            this.Controls.Add(this.tbUD);
             this.Controls.Add(this.btnCreateProcess);
             this.Controls.Add(this.lbProcess);
             this.Controls.Add(this.lbxProcess);
@@ -233,17 +211,15 @@
         private System.Windows.Forms.ToolStripMenuItem killProcessToolStripMenuItem;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button btnCreateProcess;
-        private System.Windows.Forms.TextBox tbUD;
-        private System.Windows.Forms.ComboBox cbbLoai;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox tbTT;
-        private System.Windows.Forms.TextBox tbLink;
         private System.Windows.Forms.Button btnKillProcess;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnTest;
+        private System.Windows.Forms.ListBox lbInformation;
+        private System.Windows.Forms.Button btnGetProcessTime;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ToolStripMenuItem getProcssTimesToolStripMenuItem;
+        private System.Windows.Forms.TextBox tbPath;
     }
 }
 
