@@ -74,6 +74,13 @@ namespace Task_Manager
                                 ref long lpExitTime,
                                 ref long lpKernelTime,
                                 ref long lpUserTime);
+
+            // Hàm get exit code
+            [DllImport("kernel32.dll", SetLastError = true)]
+            public static extern bool GetExitCodeProcess(IntPtr hProcess, out uint ExitCode);
+            // Hàm exit process
+            [DllImport("kernel32.dll", SetLastError = true)]
+            public static extern void ExitProcess(uint uExitCode);
         }                
 
         public FormTaskManager()
@@ -195,7 +202,28 @@ namespace Task_Manager
 
         private void btnTest_Click(object sender, EventArgs e)
         {
+            try
+            {
+                if (lbxProcess.SelectedIndex < 0 || lbxProcess.SelectedIndex >= procs.Length) //TH khi không chọn item
+                {
+                    API.ShowMessage(0, "Loi khong chon item !", "Thong bao", 0);
+                    return;
+                }
+                else
+                {
+                    uint exitCode;
+                    Process P = procs[lbxProcess.SelectedIndex];
+                    //Process P = Process.GetCurrentProcess();
+                    API.GetExitCodeProcess(P.Handle, out exitCode);
 
+                    MessageBox.Show(exitCode.ToString());
+                    //API.ExitProcess(exitCode);
+                }
+            }
+            catch (Exception ex)
+            {
+                API.ShowMessage(0, "Loi: " + ex.Message, "Thong bao", 0);
+            }
         }
     }
 

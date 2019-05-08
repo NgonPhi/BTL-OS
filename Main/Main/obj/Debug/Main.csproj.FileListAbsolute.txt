@@ -1,0 +1,23 @@
+E:\HĐH\Main\Main\bin\Debug\Main.exe.config
+E:\HĐH\Main\Main\bin\Debug\Main.exe
+E:\HĐH\Main\Main\bin\Debug\Main.pdb
+E:\HĐH\Main\Main\obj\Debug\Main.csprojAssemblyReference.cache
+E:\HĐH\Main\Main\obj\Debug\Main.Properties.Resources.resources
+E:\HĐH\Main\Main\obj\Debug\Main.csproj.GenerateResource.cache
+E:\HĐH\Main\Main\obj\Debug\Main.csproj.CoreCompileInputs.cache
+E:\HĐH\Main\Main\obj\Debug\Main.exe
+E:\HĐH\Main\Main\obj\Debug\Main.pdb
+E:\HĐH\Main\Main\obj\Debug\Main.Main.resources
+E:\HĐH\Main\Main\obj\Debug\Main.Disk.resources
+D:\Lap Trinh By Ngon Phi\OS\API\BTL OS\Main\Main\bin\Debug\Main.exe.config
+D:\Lap Trinh By Ngon Phi\OS\API\BTL OS\Main\Main\bin\Debug\Main.exe
+D:\Lap Trinh By Ngon Phi\OS\API\BTL OS\Main\Main\bin\Debug\Main.pdb
+D:\Lap Trinh By Ngon Phi\OS\API\BTL OS\Main\Main\obj\Debug\Main.csprojAssemblyReference.cache
+D:\Lap Trinh By Ngon Phi\OS\API\BTL OS\Main\Main\obj\Debug\Main.Disk.resources
+D:\Lap Trinh By Ngon Phi\OS\API\BTL OS\Main\Main\obj\Debug\Main.Main.resources
+D:\Lap Trinh By Ngon Phi\OS\API\BTL OS\Main\Main\obj\Debug\Main.Properties.Resources.resources
+D:\Lap Trinh By Ngon Phi\OS\API\BTL OS\Main\Main\obj\Debug\Main.csproj.GenerateResource.cache
+D:\Lap Trinh By Ngon Phi\OS\API\BTL OS\Main\Main\obj\Debug\Main.csproj.CoreCompileInputs.cache
+D:\Lap Trinh By Ngon Phi\OS\API\BTL OS\Main\Main\obj\Debug\Main.exe
+D:\Lap Trinh By Ngon Phi\OS\API\BTL OS\Main\Main\obj\Debug\Main.pdb
+D:\Lap Trinh By Ngon Phi\OS\API\BTL OS\Main\Main\obj\Debug\Main.Task.resources
