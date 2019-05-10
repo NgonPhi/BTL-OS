@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System.Windows.Forms;
+using System.Runtime.InteropServices;
 
 namespace Main
 {
@@ -15,26 +16,39 @@ namespace Main
     {
         class API
         {
+            // Hàm hiển thị thông báo : type : 0 (OK) / 1 (OK - Cancel)
+            [DllImport("user32.dll", EntryPoint = "MessageBox")]
+            public static extern int ShowMessage(int hWnd, string text, string caption, uint type);
 
+            // Hàm tạo thread --> handle
+            [DllImport("kernel32")]
+            public static extern IntPtr CreateThread(
+                                   IntPtr lpThreadAttributes,
+                                   UInt32 dwStackSize,
+                                   ThreadStart lpStartAddress,
+                                   IntPtr param,
+                                   UInt32 dwCreationFlags,
+                                   UInt32 lpThreadId
+                                 );
+            // Hàm dừng thread bằng handle
+            [DllImport("kernel32.dll", SetLastError = true)]
+            public static extern void SuspendThread(IntPtr hThread);
+
+            // Hàm tiếp tục thread bằng handle
+            [DllImport("kernel32.dll", SetLastError = true)]
+            public static extern void ResumeThread(IntPtr hThread);
+
+            // Hàm hủy Thread bằng handle
+            [DllImport("Kernel32.dll", CharSet = CharSet.Auto)]
+            public static extern void TerminateThread(IntPtr hThread, uint dwExitCode);
         }
-
-        Thread th1 = null;
-        bool stop1 = false;
-        int dem1 = 0;
-        Thread th2 = null;
-        bool stop2 = false;
-        int dem2 = 1;
+        
         public ThreadM()
         {
             InitializeComponent();
         }
 
-        private void btnStart1_Click(object sender, EventArgs e)
-        {
-            th1 = new Thread(Action1);
-            th1.Start();
-        }
-
+        // Fix cross thread ( Dùng chung 1 tài nguyên )
         private void ChangeText(Label lb, string s)
         {
             if (lb.InvokeRequired)
@@ -50,48 +64,95 @@ namespace Main
             }
         }
 
+        IntPtr th1;
+        int dem1 = 0;
+        IntPtr th2;
+        int dem2 = 1;
+
+        // Start
+        private void btnStart1_Click(object sender, EventArgs e)
+        {
+            dem1 = 0;
+            ThreadStart ThreadFunc = new ThreadStart(Action1);
+            th1 = API.CreateThread(IntPtr.Zero, 0, ThreadFunc, IntPtr.Zero, 0, 0);
+        }
+
+        private void btnStart2_Click(object sender, EventArgs e)
+        {
+            dem2 = 1;
+            ThreadStart ThreadFunc = new ThreadStart(Action2);
+            th2 = API.CreateThread(IntPtr.Zero, 0, ThreadFunc, IntPtr.Zero, 0, 0);
+        }
+
+        // Action
         private void Action1()
         {
-            stop1 = false;
-            while (!stop1)
-            {                
+            while (true)
+            {
                 ChangeText(label1, dem1.ToString());
                 dem1 += 2;
                 Thread.Sleep(1000);
             }
         }
 
-        private void btnStop1_Click(object sender, EventArgs e)
-        {
-            stop1 = true;
-        }
-
-        private void btnStart2_Click(object sender, EventArgs e)
-        {
-            th2 = new Thread(Action2);
-            th2.Start();
-        }
-
         private void Action2()
         {
-            stop2 = false;
-            while (!stop2)
-            {                
+            while (true)
+            {
                 ChangeText(label1, dem2.ToString());
                 dem2 += 2;
                 Thread.Sleep(500);
             }
         }
 
-        private void btnStop2_Click(object sender, EventArgs e)
+        // Suspend - Dừng
+        private void btnSsp1_Click(object sender, EventArgs e)
         {
-            stop2 = true;
+            API.SuspendThread(th1);
+        }
+
+        private void btnSsp2_Click(object sender, EventArgs e)
+        {
+            API.SuspendThread(th2);
+        }
+
+        // Resume
+        private void btnRes1_Click(object sender, EventArgs e)
+        {
+            API.ResumeThread(th1);
+        }
+
+        private void btnRes2_Click(object sender, EventArgs e)
+        {
+            API.ResumeThread(th1);
+        }
+
+        // Terminate - Hủy    
+        private void btnTer1_Click(object sender, EventArgs e)
+        {
+            int result = API.ShowMessage(0, "Ban co muon huy Thread 1 khong", "Thong bao", 1);
+            if(result == 1 )
+                API.TerminateThread(th1, 1);
+        }
+
+        private void btnTer2_Click(object sender, EventArgs e)
+        {
+            int result = API.ShowMessage(0, "Ban co muon huy Thread 2 khong", "Thong bao", 1);
+            if (result == 1)
+                API.TerminateThread(th2, 1);
         }
 
         private void ThreadM_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (th1 != null) th1.Abort();
-            if (th2 != null) th2.Abort();
+            try
+            {
+                API.TerminateThread(th1, 1);
+                API.TerminateThread(th2, 1);
+            }
+            catch(Exception ex)
+            {
+                API.ShowMessage(0, ex.Message, "Thong bao", 0);
+            }
         }
     }
 }
