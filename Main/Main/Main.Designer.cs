@@ -67,6 +67,7 @@
             this.btnThread.TabIndex = 5;
             this.btnThread.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnThread.UseVisualStyleBackColor = false;
+            this.btnThread.Click += new System.EventHandler(this.BtnThread_Click);
             // 
             // btnDisk
             // 
@@ -94,6 +95,7 @@
             this.btnMemory.Size = new System.Drawing.Size(128, 121);
             this.btnMemory.TabIndex = 7;
             this.btnMemory.UseVisualStyleBackColor = false;
+            this.btnMemory.Click += new System.EventHandler(this.BtnMemory_Click);
             // 
             // lblMain
             // 
@@ -150,7 +152,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImage = global::Main.Properties.Resources.hinh_nen_win_10_dep_42_023523736;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1482, 653);
             this.Controls.Add(this.lblMain);

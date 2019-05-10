@@ -117,7 +117,6 @@ namespace Task_Manager
                 if (result == 1)
                     procs[index].Kill();
             }
-
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -214,9 +213,10 @@ namespace Task_Manager
                     uint exitCode;
                     Process P = procs[lbxProcess.SelectedIndex];
                     //Process P = Process.GetCurrentProcess();
+                    MessageBox.Show(P.Handle.ToString());
                     API.GetExitCodeProcess(P.Handle, out exitCode);
 
-                    MessageBox.Show(exitCode.ToString());
+                    //MessageBox.Show(exitCode.ToString());
                     //API.ExitProcess(exitCode);
                 }
             }

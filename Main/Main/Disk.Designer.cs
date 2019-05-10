@@ -44,9 +44,10 @@
             // btnCreateDirectory
             // 
             this.btnCreateDirectory.BackColor = System.Drawing.Color.LemonChiffon;
-            this.btnCreateDirectory.Location = new System.Drawing.Point(19, 18);
+            this.btnCreateDirectory.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCreateDirectory.Location = new System.Drawing.Point(21, 18);
             this.btnCreateDirectory.Name = "btnCreateDirectory";
-            this.btnCreateDirectory.Size = new System.Drawing.Size(129, 38);
+            this.btnCreateDirectory.Size = new System.Drawing.Size(160, 38);
             this.btnCreateDirectory.TabIndex = 1;
             this.btnCreateDirectory.Text = "Create Directory";
             this.btnCreateDirectory.UseVisualStyleBackColor = false;
@@ -63,7 +64,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.White;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(16, 17);
             this.label1.Name = "label1";
@@ -74,18 +75,20 @@
             // btnCreateFile
             // 
             this.btnCreateFile.BackColor = System.Drawing.Color.Transparent;
-            this.btnCreateFile.Location = new System.Drawing.Point(378, 31);
+            this.btnCreateFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCreateFile.Location = new System.Drawing.Point(392, 18);
             this.btnCreateFile.Name = "btnCreateFile";
-            this.btnCreateFile.Size = new System.Drawing.Size(129, 42);
+            this.btnCreateFile.Size = new System.Drawing.Size(129, 38);
             this.btnCreateFile.TabIndex = 4;
             this.btnCreateFile.Text = "Create File";
             this.btnCreateFile.UseVisualStyleBackColor = false;
             // 
             // btnTest
             // 
-            this.btnTest.Location = new System.Drawing.Point(405, 267);
+            this.btnTest.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTest.Location = new System.Drawing.Point(439, 277);
             this.btnTest.Name = "btnTest";
-            this.btnTest.Size = new System.Drawing.Size(75, 23);
+            this.btnTest.Size = new System.Drawing.Size(82, 37);
             this.btnTest.TabIndex = 5;
             this.btnTest.Text = "Test";
             this.btnTest.UseVisualStyleBackColor = true;

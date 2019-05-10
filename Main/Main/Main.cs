@@ -28,5 +28,17 @@ namespace Main
             Task t = new Task();
             t.Show();
         }
+
+        private void BtnMemory_Click(object sender, EventArgs e)
+        {
+            Memory t = new Memory();
+            t.Show();
+        }
+
+        private void BtnThread_Click(object sender, EventArgs e)
+        {
+            ThreadM t = new ThreadM();
+            t.Show();
+        }
     }
 }

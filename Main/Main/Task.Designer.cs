@@ -46,9 +46,9 @@
             this.lbxProcess.ContextMenuStrip = this.contextMenuStrip1;
             this.lbxProcess.FormattingEnabled = true;
             this.lbxProcess.ItemHeight = 16;
-            this.lbxProcess.Location = new System.Drawing.Point(12, 46);
+            this.lbxProcess.Location = new System.Drawing.Point(237, 95);
             this.lbxProcess.Name = "lbxProcess";
-            this.lbxProcess.Size = new System.Drawing.Size(206, 404);
+            this.lbxProcess.Size = new System.Drawing.Size(318, 404);
             this.lbxProcess.TabIndex = 0;
             // 
             // contextMenuStrip1
@@ -77,9 +77,11 @@
             // lbProcess
             // 
             this.lbProcess.AutoSize = true;
-            this.lbProcess.Location = new System.Drawing.Point(159, 15);
+            this.lbProcess.BackColor = System.Drawing.Color.Transparent;
+            this.lbProcess.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbProcess.Location = new System.Drawing.Point(430, 61);
             this.lbProcess.Name = "lbProcess";
-            this.lbProcess.Size = new System.Drawing.Size(16, 17);
+            this.lbProcess.Size = new System.Drawing.Size(18, 20);
             this.lbProcess.TabIndex = 3;
             this.lbProcess.Text = "0";
             // 
@@ -91,9 +93,10 @@
             // 
             // btnCreateProcess
             // 
-            this.btnCreateProcess.Location = new System.Drawing.Point(395, 75);
+            this.btnCreateProcess.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCreateProcess.Location = new System.Drawing.Point(918, 139);
             this.btnCreateProcess.Name = "btnCreateProcess";
-            this.btnCreateProcess.Size = new System.Drawing.Size(132, 25);
+            this.btnCreateProcess.Size = new System.Drawing.Size(157, 36);
             this.btnCreateProcess.TabIndex = 4;
             this.btnCreateProcess.Text = "Create Process";
             this.btnCreateProcess.UseVisualStyleBackColor = true;
@@ -102,17 +105,20 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 15);
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(233, 61);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(141, 17);
+            this.label2.Size = new System.Drawing.Size(169, 20);
             this.label2.TabIndex = 8;
             this.label2.Text = "Danh Sách Process: ";
             // 
             // btnKillProcess
             // 
-            this.btnKillProcess.Location = new System.Drawing.Point(379, 255);
+            this.btnKillProcess.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnKillProcess.Location = new System.Drawing.Point(1082, 283);
             this.btnKillProcess.Name = "btnKillProcess";
-            this.btnKillProcess.Size = new System.Drawing.Size(146, 25);
+            this.btnKillProcess.Size = new System.Drawing.Size(146, 35);
             this.btnKillProcess.TabIndex = 13;
             this.btnKillProcess.Text = "Kill Process";
             this.btnKillProcess.UseVisualStyleBackColor = true;
@@ -121,17 +127,20 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(238, 47);
+            this.label5.BackColor = System.Drawing.Color.Transparent;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(913, 61);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(114, 17);
+            this.label5.Size = new System.Drawing.Size(130, 20);
             this.label5.TabIndex = 17;
             this.label5.Text = "Nhập đường dẫn";
             // 
             // btnTest
             // 
-            this.btnTest.Location = new System.Drawing.Point(869, 218);
+            this.btnTest.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTest.Location = new System.Drawing.Point(1224, 199);
             this.btnTest.Name = "btnTest";
-            this.btnTest.Size = new System.Drawing.Size(75, 23);
+            this.btnTest.Size = new System.Drawing.Size(88, 38);
             this.btnTest.TabIndex = 19;
             this.btnTest.Text = "Test";
             this.btnTest.UseVisualStyleBackColor = true;
@@ -141,16 +150,17 @@
             // 
             this.lbInformation.FormattingEnabled = true;
             this.lbInformation.ItemHeight = 16;
-            this.lbInformation.Location = new System.Drawing.Point(227, 315);
+            this.lbInformation.Location = new System.Drawing.Point(917, 365);
             this.lbInformation.Name = "lbInformation";
-            this.lbInformation.Size = new System.Drawing.Size(300, 132);
+            this.lbInformation.Size = new System.Drawing.Size(311, 132);
             this.lbInformation.TabIndex = 20;
             // 
             // btnGetProcessTime
             // 
-            this.btnGetProcessTime.Location = new System.Drawing.Point(227, 257);
+            this.btnGetProcessTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGetProcessTime.Location = new System.Drawing.Point(917, 283);
             this.btnGetProcessTime.Name = "btnGetProcessTime";
-            this.btnGetProcessTime.Size = new System.Drawing.Size(146, 23);
+            this.btnGetProcessTime.Size = new System.Drawing.Size(158, 35);
             this.btnGetProcessTime.TabIndex = 21;
             this.btnGetProcessTime.Text = "Get Process Time";
             this.btnGetProcessTime.UseVisualStyleBackColor = true;
@@ -159,23 +169,28 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(224, 283);
+            this.label6.BackColor = System.Drawing.Color.Transparent;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(914, 332);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(105, 17);
+            this.label6.Size = new System.Drawing.Size(127, 20);
             this.label6.TabIndex = 22;
             this.label6.Text = "Process Times:";
             // 
             // tbPath
             // 
-            this.tbPath.Location = new System.Drawing.Point(241, 75);
+            this.tbPath.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbPath.Location = new System.Drawing.Point(918, 95);
             this.tbPath.Name = "tbPath";
-            this.tbPath.Size = new System.Drawing.Size(132, 22);
+            this.tbPath.Size = new System.Drawing.Size(310, 27);
             this.tbPath.TabIndex = 24;
             // 
             // Task
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::Main.Properties.Resources.hinh_nen_win_10_dep_42_023523736;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1482, 653);
             this.Controls.Add(this.tbPath);
             this.Controls.Add(this.label6);
