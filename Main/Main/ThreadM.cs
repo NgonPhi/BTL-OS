@@ -12,7 +12,7 @@ using System.Runtime.InteropServices;
 
 namespace Main
 {
-    public partial class ThreadM : Form
+    public partial class ThreadM : MetroFramework.Forms.MetroForm
     {
         class API
         {

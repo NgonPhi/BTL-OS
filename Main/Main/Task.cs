@@ -47,7 +47,7 @@ namespace Main
         public bool bInheritHandle;
     }
 
-    public partial class Task : Form
+    public partial class Task : MetroFramework.Forms.MetroForm
     {
         class API
         {
@@ -73,6 +73,10 @@ namespace Main
                                 ref long lpExitTime,
                                 ref long lpKernelTime,
                                 ref long lpUserTime);
+
+            // Hàm hủy Process
+            [DllImport("kernel32.dll")]
+            public static extern void ExitProcess(uint uExitCode);
         }
 
         public Task()
@@ -194,9 +198,8 @@ namespace Main
 
         private void btnTest_Click(object sender, EventArgs e)
         {
-
+            API.ExitProcess(1);
         }
-
         
     }
 }

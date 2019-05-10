@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Main
 {
-    public partial class Main : Form
+    public partial class Main : MetroFramework.Forms.MetroForm
     {
         public Main()
         {

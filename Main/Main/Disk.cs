@@ -13,7 +13,7 @@ using System.Windows.Forms;
 
 namespace Main
 {
-    public partial class Disk : Form
+    public partial class Disk : MetroFramework.Forms.MetroForm
     {
         class API
         {
@@ -138,16 +138,6 @@ namespace Main
             string path = @txbDD.Text;
             if (!API.CreateDirectory(@"\\?\" + path, IntPtr.Zero))
                 API.ShowMessage(0, "Loi duong dan / ton tai thu muc !", "Thong bao", 0);
-        }
-
-        private void btnCreateFile_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnTest_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

@@ -37,3 +37,7 @@ E:\OS\BTL-OS-master\Main\Main\obj\Debug\Main.Memory.resources
 E:\OS\BTL-OS-master\Main\Main\obj\Debug\Main.Thread.resources
 D:\Lap Trinh By Ngon Phi\OS\API\BTL OS\Main\Main\obj\Debug\Main.Memory.resources
 D:\Lap Trinh By Ngon Phi\OS\API\BTL OS\Main\Main\obj\Debug\Main.ThreadM.resources
+D:\Lap Trinh By Ngon Phi\OS\API\BTL OS\Main\Main\bin\Debug\MetroFramework.Design.dll
+D:\Lap Trinh By Ngon Phi\OS\API\BTL OS\Main\Main\bin\Debug\MetroFramework.dll
+D:\Lap Trinh By Ngon Phi\OS\API\BTL OS\Main\Main\bin\Debug\MetroFramework.Fonts.dll
+D:\Lap Trinh By Ngon Phi\OS\API\BTL OS\Main\Main\obj\Debug\Main.csproj.CopyComplete
