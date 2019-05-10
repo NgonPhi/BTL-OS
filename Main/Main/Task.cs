@@ -119,11 +119,18 @@ namespace Main
         private void Form1_Load(object sender, EventArgs e)
         {
             GetProcesses();
+            timer.Start();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
             GetProcesses();
+            float fcpu = pCPU.NextValue();
+            float fram = pRAM.NextValue();
+            pbCPU.Value = (int)fcpu;
+            pbRAM.Value = (int)fram;
+            lbCPU.Text = string.Format("{0:0.00}%", fcpu);
+            lbRAM.Text = string.Format("{0:0.00}%", fram);
         }
 
         private void killProcessToolStripMenuItem_Click(object sender, EventArgs e)

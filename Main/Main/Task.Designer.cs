@@ -28,7 +28,7 @@
             this.killProcessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.getProcssTimesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lbProcess = new System.Windows.Forms.Label();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.timer = new System.Windows.Forms.Timer(this.components);
             this.btnCreateProcess = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.btnKillProcess = new System.Windows.Forms.Button();
@@ -38,7 +38,17 @@
             this.btnGetProcessTime = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.tbPath = new System.Windows.Forms.TextBox();
+            this.pRAM = new System.Diagnostics.PerformanceCounter();
+            this.pCPU = new System.Diagnostics.PerformanceCounter();
+            this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
+            this.pbCPU = new MetroFramework.Controls.MetroProgressBar();
+            this.lbCPU = new MetroFramework.Controls.MetroLabel();
+            this.lbRAM = new MetroFramework.Controls.MetroLabel();
+            this.pbRAM = new MetroFramework.Controls.MetroProgressBar();
+            this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
             this.contextMenuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pRAM)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pCPU)).BeginInit();
             this.SuspendLayout();
             // 
             // lbxProcess
@@ -85,11 +95,11 @@
             this.lbProcess.TabIndex = 3;
             this.lbProcess.Text = "0";
             // 
-            // timer1
+            // timer
             // 
-            this.timer1.Enabled = true;
-            this.timer1.Interval = 1000;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.timer.Enabled = true;
+            this.timer.Interval = 1000;
+            this.timer.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // btnCreateProcess
             // 
@@ -185,12 +195,79 @@
             this.tbPath.Size = new System.Drawing.Size(310, 27);
             this.tbPath.TabIndex = 24;
             // 
+            // pRAM
+            // 
+            this.pRAM.CategoryName = "Memory";
+            this.pRAM.CounterName = "% Committed Bytes In Use";
+            // 
+            // pCPU
+            // 
+            this.pCPU.CategoryName = "Processor";
+            this.pCPU.CounterName = "% Processor Time";
+            this.pCPU.InstanceName = "_Total";
+            // 
+            // metroLabel1
+            // 
+            this.metroLabel1.AutoSize = true;
+            this.metroLabel1.Location = new System.Drawing.Point(27, 553);
+            this.metroLabel1.Name = "metroLabel1";
+            this.metroLabel1.Size = new System.Drawing.Size(39, 20);
+            this.metroLabel1.TabIndex = 25;
+            this.metroLabel1.Text = "CPU:";
+            // 
+            // pbCPU
+            // 
+            this.pbCPU.Location = new System.Drawing.Point(72, 553);
+            this.pbCPU.Name = "pbCPU";
+            this.pbCPU.Size = new System.Drawing.Size(417, 29);
+            this.pbCPU.TabIndex = 26;
+            // 
+            // lbCPU
+            // 
+            this.lbCPU.AutoSize = true;
+            this.lbCPU.Location = new System.Drawing.Point(495, 562);
+            this.lbCPU.Name = "lbCPU";
+            this.lbCPU.Size = new System.Drawing.Size(29, 20);
+            this.lbCPU.TabIndex = 27;
+            this.lbCPU.Text = "0%";
+            // 
+            // lbRAM
+            // 
+            this.lbRAM.AutoSize = true;
+            this.lbRAM.Location = new System.Drawing.Point(495, 606);
+            this.lbRAM.Name = "lbRAM";
+            this.lbRAM.Size = new System.Drawing.Size(29, 20);
+            this.lbRAM.TabIndex = 30;
+            this.lbRAM.Text = "0%";
+            // 
+            // pbRAM
+            // 
+            this.pbRAM.Location = new System.Drawing.Point(72, 597);
+            this.pbRAM.Name = "pbRAM";
+            this.pbRAM.Size = new System.Drawing.Size(417, 29);
+            this.pbRAM.TabIndex = 29;
+            // 
+            // metroLabel3
+            // 
+            this.metroLabel3.AutoSize = true;
+            this.metroLabel3.Location = new System.Drawing.Point(27, 597);
+            this.metroLabel3.Name = "metroLabel3";
+            this.metroLabel3.Size = new System.Drawing.Size(41, 20);
+            this.metroLabel3.TabIndex = 28;
+            this.metroLabel3.Text = "RAM:";
+            // 
             // Task
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(697, 653);
+            this.Controls.Add(this.lbRAM);
+            this.Controls.Add(this.pbRAM);
+            this.Controls.Add(this.metroLabel3);
+            this.Controls.Add(this.lbCPU);
+            this.Controls.Add(this.pbCPU);
+            this.Controls.Add(this.metroLabel1);
             this.Controls.Add(this.tbPath);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.btnGetProcessTime);
@@ -208,6 +285,8 @@
             this.Text = "Task";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.contextMenuStrip1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pRAM)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pCPU)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -217,7 +296,7 @@
         private System.Windows.Forms.Label lbProcess;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem killProcessToolStripMenuItem;
-        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Timer timer;
         private System.Windows.Forms.Button btnCreateProcess;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnKillProcess;
@@ -228,5 +307,13 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ToolStripMenuItem getProcssTimesToolStripMenuItem;
         private System.Windows.Forms.TextBox tbPath;
+        private System.Diagnostics.PerformanceCounter pRAM;
+        private System.Diagnostics.PerformanceCounter pCPU;
+        private MetroFramework.Controls.MetroLabel metroLabel1;
+        private MetroFramework.Controls.MetroProgressBar pbCPU;
+        private MetroFramework.Controls.MetroLabel lbCPU;
+        private MetroFramework.Controls.MetroLabel lbRAM;
+        private MetroFramework.Controls.MetroProgressBar pbRAM;
+        private MetroFramework.Controls.MetroLabel metroLabel3;
     }
 }

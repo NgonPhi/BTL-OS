@@ -38,7 +38,7 @@
             // 
             this.btnCreateDirectory.BackColor = System.Drawing.Color.White;
             this.btnCreateDirectory.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCreateDirectory.Location = new System.Drawing.Point(447, 135);
+            this.btnCreateDirectory.Location = new System.Drawing.Point(525, 134);
             this.btnCreateDirectory.Name = "btnCreateDirectory";
             this.btnCreateDirectory.Size = new System.Drawing.Size(160, 38);
             this.btnCreateDirectory.TabIndex = 1;
@@ -49,9 +49,9 @@
             // txbDD
             // 
             this.txbDD.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbDD.Location = new System.Drawing.Point(447, 99);
+            this.txbDD.Location = new System.Drawing.Point(435, 98);
             this.txbDD.Name = "txbDD";
-            this.txbDD.Size = new System.Drawing.Size(160, 30);
+            this.txbDD.Size = new System.Drawing.Size(250, 30);
             this.txbDD.TabIndex = 2;
             // 
             // label1
@@ -59,7 +59,7 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(442, 71);
+            this.label1.Location = new System.Drawing.Point(430, 70);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(163, 25);
             this.label1.TabIndex = 3;
@@ -80,7 +80,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(622, 653);
+            this.ClientSize = new System.Drawing.Size(720, 653);
             this.Controls.Add(this.txbDD);
             this.Controls.Add(this.btnCreateDirectory);
             this.Controls.Add(this.label1);
