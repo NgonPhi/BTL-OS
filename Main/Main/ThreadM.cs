@@ -32,15 +32,15 @@ namespace Main
                                  );
             // Hàm dừng thread bằng handle
             [DllImport("kernel32.dll", SetLastError = true)]
-            public static extern void SuspendThread(IntPtr hThread);
+            public static extern int SuspendThread(IntPtr hThread);
 
             // Hàm tiếp tục thread bằng handle
             [DllImport("kernel32.dll", SetLastError = true)]
-            public static extern void ResumeThread(IntPtr hThread);
+            public static extern int ResumeThread(IntPtr hThread);
 
             // Hàm hủy Thread bằng handle
             [DllImport("Kernel32.dll", CharSet = CharSet.Auto)]
-            public static extern void TerminateThread(IntPtr hThread, uint dwExitCode);
+            public static extern bool TerminateThread(IntPtr hThread, uint dwExitCode);
         }
         
         public ThreadM()
@@ -108,23 +108,27 @@ namespace Main
         // Suspend - Dừng
         private void btnSsp1_Click(object sender, EventArgs e)
         {
-            API.SuspendThread(th1);
+            if (API.SuspendThread(th1) == -1)
+                API.ShowMessage(0, "Loi khong ton tai Thread!", "Thong bao", 0);
         }
 
         private void btnSsp2_Click(object sender, EventArgs e)
         {
-            API.SuspendThread(th2);
+            if (API.SuspendThread(th2) == -1)
+                API.ShowMessage(0, "Loi khong ton tai Thread!", "Thong bao", 0);
         }
 
         // Resume
         private void btnRes1_Click(object sender, EventArgs e)
         {
-            API.ResumeThread(th1);
+            if (API.ResumeThread(th1) == 0)
+                API.ShowMessage(0, "Loi khong ton tai Thread!", "Thong bao", 0);
         }
 
         private void btnRes2_Click(object sender, EventArgs e)
         {
-            API.ResumeThread(th1);
+            if (API.ResumeThread(th2) == 0)
+                API.ShowMessage(0, "Loi khong ton tai Thread!", "Thong bao", 0);
         }
 
         // Terminate - Hủy    
@@ -132,22 +136,26 @@ namespace Main
         {
             int result = API.ShowMessage(0, "Ban co muon huy Thread 1 khong", "Thong bao", 1);
             if(result == 1 )
-                API.TerminateThread(th1, 1);
+                if(!API.TerminateThread(th1, 1))
+                    API.ShowMessage(0, "Loi", "Thong bao", 0);
         }
 
         private void btnTer2_Click(object sender, EventArgs e)
         {
             int result = API.ShowMessage(0, "Ban co muon huy Thread 2 khong", "Thong bao", 1);
             if (result == 1)
-                API.TerminateThread(th2, 1);
+                if (!API.TerminateThread(th2, 1))
+                    API.ShowMessage(0, "Loi", "Thong bao", 0);
         }
 
         private void ThreadM_FormClosing(object sender, FormClosingEventArgs e)
         {
             try
             {
-                API.TerminateThread(th1, 1);
-                API.TerminateThread(th2, 1);
+                if (!API.TerminateThread(th1, 1))
+                    API.ShowMessage(0, "Loi", "Thong bao", 0);
+                if (!API.TerminateThread(th2, 1))
+                    API.ShowMessage(0, "Loi", "Thong bao", 0);
             }
             catch(Exception ex)
             {

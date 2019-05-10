@@ -37,39 +37,15 @@ namespace Main
             [DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
             public static extern bool CreateDirectory(string lpPathName, IntPtr lpSecurityAttributes);
 
-
-            // Test
-            [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-            public static extern IntPtr CreateFile(
-                 [MarshalAs(UnmanagedType.LPTStr)] string filename,
-                 [MarshalAs(UnmanagedType.U4)] FileAccess access,
-                 [MarshalAs(UnmanagedType.U4)] FileShare share,
-                 IntPtr securityAttributes, // optional SECURITY_ATTRIBUTES struct or IntPtr.Zero
-                 [MarshalAs(UnmanagedType.U4)] FileMode creationDisposition,
-                 [MarshalAs(UnmanagedType.U4)] FileAttributes flagsAndAttributes,
-                 IntPtr templateFile);
-
-            [DllImport("kernel32.dll", CharSet = CharSet.Ansi, SetLastError = true)]
-            public static extern IntPtr CreateFileA(
-                 [MarshalAs(UnmanagedType.LPStr)] string filename,
-                 [MarshalAs(UnmanagedType.U4)] FileAccess access,
-                 [MarshalAs(UnmanagedType.U4)] FileShare share,
-                 IntPtr securityAttributes,
-                 [MarshalAs(UnmanagedType.U4)] FileMode creationDisposition,
-                 [MarshalAs(UnmanagedType.U4)] FileAttributes flagsAndAttributes,
-                 IntPtr templateFile);
-
+            // Hàm xóa thư mục theo đường dẫn
             [DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
-            public static extern IntPtr CreateFileW(
-                 [MarshalAs(UnmanagedType.LPWStr)] string filename,
-                 [MarshalAs(UnmanagedType.U4)] FileAccess access,
-                 [MarshalAs(UnmanagedType.U4)] FileShare share,
-                 IntPtr securityAttributes,
-                 [MarshalAs(UnmanagedType.U4)] FileMode creationDisposition,
-                 [MarshalAs(UnmanagedType.U4)] FileAttributes flagsAndAttributes,
-                 IntPtr templateFile);
-        }
+            public static extern bool RemoveDirectory(string lpPathName);
 
+            // Hàm mở file / thư mục / link web
+            [DllImport("Shell32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+            public static extern bool ShellExecute(IntPtr hwnd, string lpOperation, string lpFile, string lpParameters, string lpDirectory, int nShowCmd);
+
+        }
         public Disk()
         {
             InitializeComponent();
@@ -106,38 +82,59 @@ namespace Main
                 ulong FreeBytesAvailable;
                 ulong TotalNumberOfBytes;
                 ulong TotalNumberOfFreeBytes;
-
-                bool success = API.GetDiskFreeSpaceEx(s, out FreeBytesAvailable, out TotalNumberOfBytes, out TotalNumberOfFreeBytes);
-                if (!success)
+                if (!API.GetDiskFreeSpaceEx(s, out FreeBytesAvailable, out TotalNumberOfBytes, out TotalNumberOfFreeBytes))
                     throw new System.ComponentModel.Win32Exception();
 
                 Button btnx = new Button();
                 btnx.BackgroundImage = bkg;
-                btnx.BackColor = Color.LemonChiffon;
                 btnx.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
                 btnx.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
                 btnx.Name = "btnx" + t;
                 btnx.Size = new System.Drawing.Size(100, 80);
-
                 pnlDisk.Controls.Add(btnx);
-
 
                 Button btn = new Button();
                 btn.Name = "btn" + t;
                 btn.Size = new System.Drawing.Size(160, 80);
                 btn.Margin = new System.Windows.Forms.Padding(0, 3, 20, 3);
-                btn.BackColor = Color.LemonChiffon;
                 btn.Text = s + "\n" + TotalNumberOfFreeBytes / (1024 * 1024 * 1024) + " GB free of " + TotalNumberOfBytes / (1024 * 1024 * 1024) + " GB\r\n";
+
+                btn.Click += btn_Click;
                 pnlDisk.Controls.Add(btn);
                 t++;
             }
         }
 
-        private void btnCreateDirectory_Click(object sender, EventArgs e)
+        private void btn_Click(object sender, EventArgs e)
+        {
+            Button btn = sender as Button;
+            string path = btn.Text.Substring(0, 3);
+            if (!API.ShellExecute(IntPtr.Zero, "open", null, null, @path, 1))
+                API.ShowMessage(0, "Loi duong dan !", "Thong bao", 0);
+        }
+
+        private void btnCD_Click(object sender, EventArgs e)
         {
             string path = @txbDD.Text;
             if (!API.CreateDirectory(@"\\?\" + path, IntPtr.Zero))
                 API.ShowMessage(0, "Loi duong dan / ton tai thu muc !", "Thong bao", 0);
+        }
+
+        private void btnDD_Click(object sender, EventArgs e)
+        {
+            string path = @txbDD.Text;
+            int rs = API.ShowMessage(0, "Ban co muon xoa thu muc khong?", "Thong bao", 1);
+            if(rs == 1)
+                if (!API.RemoveDirectory(@"\\?\" + path))
+                    API.ShowMessage(0, "Loi duong dan / ton tai thu muc !", "Thong bao", 0);
+        }
+
+        private void btnOpen_Click(object sender, EventArgs e)
+        {
+            string path = @txbDD.Text;
+            string nameF = txbFile.Text;
+            if (!API.ShellExecute(IntPtr.Zero, "open", nameF, null, @path, 1))
+                API.ShowMessage(0, "Loi duong dan / ten file !", "Thong bao", 0);
         }
     }
 }

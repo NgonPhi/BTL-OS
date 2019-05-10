@@ -88,7 +88,6 @@ namespace Main
         private void GetProcesses()
         {
             procs = Process.GetProcesses(); //Trả về tất cả các tiến trình đang chạy trên máy tính
-
             if (Convert.ToInt32(lbProcess.Text) != procs.Length)
             {
                 lbxProcess.Items.Clear();
@@ -113,7 +112,6 @@ namespace Main
                 if (result == 1)
                     procs[index].Kill();
             }
-
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -122,7 +120,7 @@ namespace Main
             timer.Start();
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        private void timer_Tick(object sender, EventArgs e)
         {
             GetProcesses();
             float fcpu = pCPU.NextValue();
@@ -188,14 +186,6 @@ namespace Main
         private void getProcssTimesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             GetProcessTimes(lbxProcess.SelectedIndex);
-        }
-
-        private void btnTaoProcess_Click(object sender, EventArgs e)
-        {
-            string path = tbPath.Text;
-            STARTUPINFO si = new STARTUPINFO();
-            PROCESS_INFORMATION pi = new PROCESS_INFORMATION();
-            API.CreateProcess(@path, null, IntPtr.Zero, IntPtr.Zero, false, 0, IntPtr.Zero, null, ref si, out pi);
         }
 
         private void btnGetProcessTime_Click(object sender, EventArgs e)

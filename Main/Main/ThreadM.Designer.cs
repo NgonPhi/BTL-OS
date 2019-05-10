@@ -104,7 +104,7 @@
             // 
             // btnTer2
             // 
-            this.btnTer2.Location = new System.Drawing.Point(367, 198);
+            this.btnTer2.Location = new System.Drawing.Point(367, 112);
             this.btnTer2.Name = "btnTer2";
             this.btnTer2.Size = new System.Drawing.Size(100, 43);
             this.btnTer2.TabIndex = 15;
@@ -142,7 +142,7 @@
             // 
             // btnSsp2
             // 
-            this.btnSsp2.Location = new System.Drawing.Point(367, 108);
+            this.btnSsp2.Location = new System.Drawing.Point(367, 203);
             this.btnSsp2.Name = "btnSsp2";
             this.btnSsp2.Size = new System.Drawing.Size(100, 38);
             this.btnSsp2.TabIndex = 11;
