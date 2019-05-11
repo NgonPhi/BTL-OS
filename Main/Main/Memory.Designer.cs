@@ -33,8 +33,7 @@
             this.pbRAM = new MetroFramework.Controls.MetroProgressBar();
             this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
             this.timer = new System.Windows.Forms.Timer(this.components);
-            this.pRAM = new System.Diagnostics.PerformanceCounter();
-            ((System.ComponentModel.ISupportInitialize)(this.pRAM)).BeginInit();
+            this.lbxInfo = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // lbRAM
@@ -48,7 +47,7 @@
             // 
             // pbRAM
             // 
-            this.pbRAM.Location = new System.Drawing.Point(70, 75);
+            this.pbRAM.Location = new System.Drawing.Point(72, 75);
             this.pbRAM.Name = "pbRAM";
             this.pbRAM.Size = new System.Drawing.Size(417, 29);
             this.pbRAM.TabIndex = 32;
@@ -68,10 +67,14 @@
             this.timer.Interval = 1000;
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
-            // pRAM
+            // lbxInfo
             // 
-            this.pRAM.CategoryName = "Memory";
-            this.pRAM.CounterName = "% Committed Bytes In Use";
+            this.lbxInfo.FormattingEnabled = true;
+            this.lbxInfo.ItemHeight = 16;
+            this.lbxInfo.Location = new System.Drawing.Point(72, 124);
+            this.lbxInfo.Name = "lbxInfo";
+            this.lbxInfo.Size = new System.Drawing.Size(417, 68);
+            this.lbxInfo.TabIndex = 34;
             // 
             // Memory
             // 
@@ -79,6 +82,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(656, 653);
+            this.Controls.Add(this.lbxInfo);
             this.Controls.Add(this.lbRAM);
             this.Controls.Add(this.pbRAM);
             this.Controls.Add(this.metroLabel3);
@@ -86,7 +90,6 @@
             this.Name = "Memory";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Memory";
-            ((System.ComponentModel.ISupportInitialize)(this.pRAM)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -98,6 +101,6 @@
         private MetroFramework.Controls.MetroProgressBar pbRAM;
         private MetroFramework.Controls.MetroLabel metroLabel3;
         private System.Windows.Forms.Timer timer;
-        private System.Diagnostics.PerformanceCounter pRAM;
+        private System.Windows.Forms.ListBox lbxInfo;
     }
 }
