@@ -109,26 +109,26 @@ namespace Main
         private void btnSsp1_Click(object sender, EventArgs e)
         {
             if (API.SuspendThread(th1) == -1)
-                API.ShowMessage(0, "Loi khong ton tai Thread!", "Thong bao", 0);
+                API.ShowMessage(0, "Loi khong ton tai Thread / Thread dang dung!", "Thong bao", 0);
         }
 
         private void btnSsp2_Click(object sender, EventArgs e)
         {
             if (API.SuspendThread(th2) == -1)
-                API.ShowMessage(0, "Loi khong ton tai Thread!", "Thong bao", 0);
+                API.ShowMessage(0, "Loi khong ton tai Thread / Thread dang dung!", "Thong bao", 0);
         }
 
         // Resume
         private void btnRes1_Click(object sender, EventArgs e)
         {
             if (API.ResumeThread(th1) == 0)
-                API.ShowMessage(0, "Loi khong ton tai Thread!", "Thong bao", 0);
+                API.ShowMessage(0, "Loi khong ton tai Thread / Thread dang chay!", "Thong bao", 0);
         }
 
         private void btnRes2_Click(object sender, EventArgs e)
         {
             if (API.ResumeThread(th2) == 0)
-                API.ShowMessage(0, "Loi khong ton tai Thread!", "Thong bao", 0);
+                API.ShowMessage(0, "Loi khong ton tai Thread / Thread dang chay!", "Thong bao", 0);
         }
 
         // Terminate - Hủy    
@@ -137,7 +137,7 @@ namespace Main
             int result = API.ShowMessage(0, "Ban co muon huy Thread 1 khong", "Thong bao", 1);
             if(result == 1 )
                 if(!API.TerminateThread(th1, 1))
-                    API.ShowMessage(0, "Loi", "Thong bao", 0);
+                    API.ShowMessage(0, "Loi khong ton tai Thread", "Thong bao", 0);
         }
 
         private void btnTer2_Click(object sender, EventArgs e)
@@ -145,17 +145,15 @@ namespace Main
             int result = API.ShowMessage(0, "Ban co muon huy Thread 2 khong", "Thong bao", 1);
             if (result == 1)
                 if (!API.TerminateThread(th2, 1))
-                    API.ShowMessage(0, "Loi", "Thong bao", 0);
+                    API.ShowMessage(0, "Loi khong ton tai Thread", "Thong bao", 0);
         }
 
         private void ThreadM_FormClosing(object sender, FormClosingEventArgs e)
         {
             try
             {
-                if (!API.TerminateThread(th1, 1))
-                    API.ShowMessage(0, "Loi", "Thong bao", 0);
-                if (!API.TerminateThread(th2, 1))
-                    API.ShowMessage(0, "Loi", "Thong bao", 0);
+                API.TerminateThread(th1, 1);
+                API.TerminateThread(th2, 1);
             }
             catch(Exception ex)
             {

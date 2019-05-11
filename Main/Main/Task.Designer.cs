@@ -33,7 +33,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnKillProcess = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
-            this.btnTest = new System.Windows.Forms.Button();
             this.lbInformation = new System.Windows.Forms.ListBox();
             this.btnGetProcessTime = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
@@ -56,7 +55,7 @@
             this.lbxProcess.ContextMenuStrip = this.contextMenuStrip1;
             this.lbxProcess.FormattingEnabled = true;
             this.lbxProcess.ItemHeight = 16;
-            this.lbxProcess.Location = new System.Drawing.Point(27, 112);
+            this.lbxProcess.Location = new System.Drawing.Point(27, 203);
             this.lbxProcess.Name = "lbxProcess";
             this.lbxProcess.Size = new System.Drawing.Size(318, 420);
             this.lbxProcess.TabIndex = 0;
@@ -89,7 +88,7 @@
             this.lbProcess.AutoSize = true;
             this.lbProcess.BackColor = System.Drawing.Color.Transparent;
             this.lbProcess.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbProcess.Location = new System.Drawing.Point(220, 78);
+            this.lbProcess.Location = new System.Drawing.Point(220, 169);
             this.lbProcess.Name = "lbProcess";
             this.lbProcess.Size = new System.Drawing.Size(18, 20);
             this.lbProcess.TabIndex = 3;
@@ -104,7 +103,7 @@
             // btnCreateProcess
             // 
             this.btnCreateProcess.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCreateProcess.Location = new System.Drawing.Point(351, 199);
+            this.btnCreateProcess.Location = new System.Drawing.Point(351, 290);
             this.btnCreateProcess.Name = "btnCreateProcess";
             this.btnCreateProcess.Size = new System.Drawing.Size(157, 36);
             this.btnCreateProcess.TabIndex = 4;
@@ -117,7 +116,7 @@
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(23, 78);
+            this.label2.Location = new System.Drawing.Point(23, 169);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(169, 20);
             this.label2.TabIndex = 8;
@@ -126,9 +125,9 @@
             // btnKillProcess
             // 
             this.btnKillProcess.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnKillProcess.Location = new System.Drawing.Point(516, 304);
+            this.btnKillProcess.Location = new System.Drawing.Point(350, 343);
             this.btnKillProcess.Name = "btnKillProcess";
-            this.btnKillProcess.Size = new System.Drawing.Size(146, 35);
+            this.btnKillProcess.Size = new System.Drawing.Size(158, 35);
             this.btnKillProcess.TabIndex = 13;
             this.btnKillProcess.Text = "Kill Process";
             this.btnKillProcess.UseVisualStyleBackColor = true;
@@ -139,28 +138,17 @@
             this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(351, 112);
+            this.label5.Location = new System.Drawing.Point(351, 203);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(130, 20);
             this.label5.TabIndex = 17;
             this.label5.Text = "Nhập đường dẫn";
             // 
-            // btnTest
-            // 
-            this.btnTest.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTest.Location = new System.Drawing.Point(573, 199);
-            this.btnTest.Name = "btnTest";
-            this.btnTest.Size = new System.Drawing.Size(88, 38);
-            this.btnTest.TabIndex = 19;
-            this.btnTest.Text = "Test";
-            this.btnTest.UseVisualStyleBackColor = true;
-            this.btnTest.Click += new System.EventHandler(this.btnTest_Click);
-            // 
             // lbInformation
             // 
             this.lbInformation.FormattingEnabled = true;
             this.lbInformation.ItemHeight = 16;
-            this.lbInformation.Location = new System.Drawing.Point(350, 384);
+            this.lbInformation.Location = new System.Drawing.Point(350, 475);
             this.lbInformation.Name = "lbInformation";
             this.lbInformation.Size = new System.Drawing.Size(311, 148);
             this.lbInformation.TabIndex = 20;
@@ -168,7 +156,7 @@
             // btnGetProcessTime
             // 
             this.btnGetProcessTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGetProcessTime.Location = new System.Drawing.Point(351, 304);
+            this.btnGetProcessTime.Location = new System.Drawing.Point(351, 395);
             this.btnGetProcessTime.Name = "btnGetProcessTime";
             this.btnGetProcessTime.Size = new System.Drawing.Size(158, 35);
             this.btnGetProcessTime.TabIndex = 21;
@@ -181,7 +169,7 @@
             this.label6.AutoSize = true;
             this.label6.BackColor = System.Drawing.Color.Transparent;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(348, 353);
+            this.label6.Location = new System.Drawing.Point(348, 444);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(127, 20);
             this.label6.TabIndex = 22;
@@ -190,7 +178,7 @@
             // tbPath
             // 
             this.tbPath.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbPath.Location = new System.Drawing.Point(351, 149);
+            this.tbPath.Location = new System.Drawing.Point(351, 240);
             this.tbPath.Name = "tbPath";
             this.tbPath.Size = new System.Drawing.Size(310, 27);
             this.tbPath.TabIndex = 24;
@@ -209,7 +197,7 @@
             // metroLabel1
             // 
             this.metroLabel1.AutoSize = true;
-            this.metroLabel1.Location = new System.Drawing.Point(27, 553);
+            this.metroLabel1.Location = new System.Drawing.Point(28, 73);
             this.metroLabel1.Name = "metroLabel1";
             this.metroLabel1.Size = new System.Drawing.Size(39, 20);
             this.metroLabel1.TabIndex = 25;
@@ -217,15 +205,15 @@
             // 
             // pbCPU
             // 
-            this.pbCPU.Location = new System.Drawing.Point(72, 553);
+            this.pbCPU.Location = new System.Drawing.Point(73, 73);
             this.pbCPU.Name = "pbCPU";
-            this.pbCPU.Size = new System.Drawing.Size(417, 29);
+            this.pbCPU.Size = new System.Drawing.Size(272, 29);
             this.pbCPU.TabIndex = 26;
             // 
             // lbCPU
             // 
             this.lbCPU.AutoSize = true;
-            this.lbCPU.Location = new System.Drawing.Point(495, 562);
+            this.lbCPU.Location = new System.Drawing.Point(364, 82);
             this.lbCPU.Name = "lbCPU";
             this.lbCPU.Size = new System.Drawing.Size(29, 20);
             this.lbCPU.TabIndex = 27;
@@ -234,7 +222,7 @@
             // lbRAM
             // 
             this.lbRAM.AutoSize = true;
-            this.lbRAM.Location = new System.Drawing.Point(495, 606);
+            this.lbRAM.Location = new System.Drawing.Point(364, 128);
             this.lbRAM.Name = "lbRAM";
             this.lbRAM.Size = new System.Drawing.Size(29, 20);
             this.lbRAM.TabIndex = 30;
@@ -242,15 +230,15 @@
             // 
             // pbRAM
             // 
-            this.pbRAM.Location = new System.Drawing.Point(72, 597);
+            this.pbRAM.Location = new System.Drawing.Point(73, 119);
             this.pbRAM.Name = "pbRAM";
-            this.pbRAM.Size = new System.Drawing.Size(417, 29);
+            this.pbRAM.Size = new System.Drawing.Size(272, 29);
             this.pbRAM.TabIndex = 29;
             // 
             // metroLabel3
             // 
             this.metroLabel3.AutoSize = true;
-            this.metroLabel3.Location = new System.Drawing.Point(27, 597);
+            this.metroLabel3.Location = new System.Drawing.Point(28, 119);
             this.metroLabel3.Name = "metroLabel3";
             this.metroLabel3.Size = new System.Drawing.Size(41, 20);
             this.metroLabel3.TabIndex = 28;
@@ -272,7 +260,6 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.btnGetProcessTime);
             this.Controls.Add(this.lbInformation);
-            this.Controls.Add(this.btnTest);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.btnKillProcess);
             this.Controls.Add(this.label2);
@@ -301,7 +288,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnKillProcess;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button btnTest;
         private System.Windows.Forms.ListBox lbInformation;
         private System.Windows.Forms.Button btnGetProcessTime;
         private System.Windows.Forms.Label label6;

@@ -49,6 +49,7 @@ namespace Main
         public Disk()
         {
             InitializeComponent();
+            timer.Start();
         }
 
         private void Disk_Load(object sender, EventArgs e)
@@ -135,6 +136,13 @@ namespace Main
             string nameF = txbFile.Text;
             if (!API.ShellExecute(IntPtr.Zero, "open", nameF, null, @path, 1))
                 API.ShowMessage(0, "Loi duong dan / ten file !", "Thong bao", 0);
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            float fdisk = pDisk.NextValue();
+            pbDisk.Value = (int)fdisk;
+            lbDisk.Text = string.Format("{0:0.00}%", fdisk);
         }
     }
 }

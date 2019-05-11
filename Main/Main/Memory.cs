@@ -15,6 +15,14 @@ namespace Main
         public Memory()
         {
             InitializeComponent();
+            timer.Start();
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            float fram = pRAM.NextValue();
+            pbRAM.Value = (int)fram;
+            lbRAM.Text = string.Format("{0:0.00}%", fram);
         }
     }
 }

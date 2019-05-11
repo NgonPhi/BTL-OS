@@ -58,11 +58,12 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Red;
-            this.label1.Location = new System.Drawing.Point(174, 152);
+            this.label1.Location = new System.Drawing.Point(223, 153);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(71, 38);
             this.label1.TabIndex = 8;
             this.label1.Text = "???";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel1
             // 
@@ -129,7 +130,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(126, 17);
             this.label3.TabIndex = 13;
-            this.label3.Text = "Thread 1: In Số Lẻ";
+            this.label3.Text = "Thread 2: In Số Lẻ";
             // 
             // label2
             // 

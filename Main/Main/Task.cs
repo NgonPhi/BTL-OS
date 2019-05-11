@@ -5,7 +5,9 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.ConstrainedExecution;
 using System.Runtime.InteropServices;
+using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -75,8 +77,9 @@ namespace Main
                                 ref long lpUserTime);
 
             // Hàm hủy Process
-            [DllImport("kernel32.dll")]
-            public static extern void ExitProcess(uint uExitCode);
+            [DllImport("kernel32.dll", SetLastError = true)]
+            [return: MarshalAs(UnmanagedType.Bool)]
+            public static extern bool TerminateProcess(IntPtr hProcess, uint uExitCode);
         }
 
         public Task()
@@ -110,7 +113,16 @@ namespace Main
             {
                 int result = API.ShowMessage(0, "Ban co muon xoa tien trinh nay khong ?", "Message", 1);
                 if (result == 1)
-                    procs[index].Kill();
+                {
+                    try
+                    {
+                        API.TerminateProcess(procs[index].Handle, 1);
+                    }
+                    catch (Exception ex)
+                    {
+                        API.ShowMessage(0, "Loi " + ex.Message, "Thong bao", 0);
+                    }
+                }
             }
         }
 
@@ -143,6 +155,7 @@ namespace Main
             PROCESS_INFORMATION pi = new PROCESS_INFORMATION();
             if (!API.CreateProcess(@path, null, IntPtr.Zero, IntPtr.Zero, false, 0, IntPtr.Zero, null, ref si, out pi))
                 API.ShowMessage(0, "Loi duong dan !", "Thong bao", 0);
+            API.ShowMessage(0, "Process ID: " + pi.dwProcessId, "Thong tin", 0);
         }
 
         private void btnKillProcess_Click(object sender, EventArgs e)
@@ -192,11 +205,5 @@ namespace Main
         {
             GetProcessTimes(lbxProcess.SelectedIndex);
         }
-
-        private void btnTest_Click(object sender, EventArgs e)
-        {
-            API.ExitProcess(1);
-        }
-        
     }
 }
