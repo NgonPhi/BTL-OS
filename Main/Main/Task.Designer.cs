@@ -230,9 +230,9 @@
             // 
             // pbRAM
             // 
-            this.pbRAM.Location = new System.Drawing.Point(73, 119);
+            this.pbRAM.Location = new System.Drawing.Point(75, 119);
             this.pbRAM.Name = "pbRAM";
-            this.pbRAM.Size = new System.Drawing.Size(272, 29);
+            this.pbRAM.Size = new System.Drawing.Size(270, 29);
             this.pbRAM.TabIndex = 29;
             // 
             // metroLabel3

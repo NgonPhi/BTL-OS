@@ -12,6 +12,25 @@ using System.Windows.Forms;
 namespace Main
 {
     [StructLayout(LayoutKind.Sequential)]
+    public struct PERFORMANCE_INFORMATION
+    {
+        public uint cb;
+        public UIntPtr CommitTotal;
+        public UIntPtr CommitLimit;
+        public UIntPtr CommitPeak;
+        public UIntPtr PhysicalTotal;
+        public UIntPtr PhysicalAvailable;
+        public UIntPtr SystemCache;
+        public UIntPtr KernelTotal;
+        public UIntPtr KernelPaged;
+        public UIntPtr KernelNonpaged;
+        public UIntPtr PageSize;
+        public uint HandleCount;
+        public uint ProcessCount;
+        public uint ThreadCount;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
     internal struct MEMORYSTATUSEX
     {
         internal uint dwLength;
@@ -31,6 +50,9 @@ namespace Main
             [return: MarshalAs(UnmanagedType.Bool)]
             [DllImport("Kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
             public static extern bool GlobalMemoryStatusEx(ref MEMORYSTATUSEX lpBuffer);
+
+            [DllImport("psapi.dll", SetLastError = true)]
+            public static extern bool GetPerformanceInfo(out PERFORMANCE_INFORMATION pPerformanceInformation, uint cb);
         }
 
         public Memory()
@@ -44,17 +66,29 @@ namespace Main
         {
             MEMORYSTATUSEX statEX = new MEMORYSTATUSEX();
             statEX.dwLength = (uint)Marshal.SizeOf(typeof(MEMORYSTATUSEX));
-            API.GlobalMemoryStatusEx(ref statEX);
-
             lbxInfo.Items.Clear();
+            if (API.GlobalMemoryStatusEx(ref statEX))
+            {               
+                pbRAM.Value = (int)statEX.dwMemoryLoad;
+                lbRAM.Text = statEX.dwMemoryLoad + " %"; // 0-100
 
-            pbRAM.Value = (int)statEX.dwMemoryLoad;
-            lbRAM.Text = statEX.dwMemoryLoad + " %"; // 0-100
-            
-            lbxInfo.Items.Add("Tổng kích thước (Vật lý): " + statEX.ullTotalPhys + " bytes");
-            lbxInfo.Items.Add("Kích thước (Vật lý) có sẵn: " + statEX.ullAvailPhys + " bytes");
-            lbxInfo.Items.Add("Kích thước (Ảo) đã sử dụng: " + (statEX.ullTotalPageFile - statEX.ullTotalPhys) + " bytes");
-            lbxInfo.Items.Add("Kích thước (Ảo) khả dụng: " + (statEX.ullAvailPageFile - statEX.ullAvailPhys) + " bytes");
+                lbxInfo.Items.Add("Tổng kích thước (Vật lý): " + statEX.ullTotalPhys + " bytes");
+                lbxInfo.Items.Add("Kích thước (Vật lý) có sẵn: " + statEX.ullAvailPhys + " bytes");
+                lbxInfo.Items.Add("Kích thước (Ảo) đã sử dụng: " + (statEX.ullTotalPageFile - statEX.ullTotalPhys) + " bytes");
+                lbxInfo.Items.Add("Kích thước (Ảo) khả dụng: " + (statEX.ullAvailPageFile - statEX.ullAvailPhys) + " bytes");
+            }
+            PERFORMANCE_INFORMATION perfInfo = new PERFORMANCE_INFORMATION();
+            uint input_size = (uint)System.Runtime.InteropServices.Marshal.SizeOf(typeof(PERFORMANCE_INFORMATION));
+            if (API.GetPerformanceInfo(out perfInfo, input_size))
+            {
+                lbxInfo.Items.Add("-----------------------------------------------------------------------");
+                lbxInfo.Items.Add("Số trang tối đa hiện tại: " + perfInfo.CommitLimit.ToUInt64() + " pages");
+                lbxInfo.Items.Add("Số trang tối đa đồng thời: " + perfInfo.CommitPeak.ToUInt64() + " pages");
+                lbxInfo.Items.Add("Kích thước 1 trang: " + perfInfo.PageSize.ToUInt64() + " bytes");
+                lbxInfo.Items.Add("Số handle: " + perfInfo.HandleCount);
+                lbxInfo.Items.Add("Số process: " + perfInfo.ProcessCount);
+                lbxInfo.Items.Add("Số thread: " + perfInfo.HandleCount);
+            }
         }
 
         private void timer_Tick(object sender, EventArgs e)

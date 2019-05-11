@@ -49,7 +49,7 @@
             // 
             this.pbRAM.Location = new System.Drawing.Point(72, 75);
             this.pbRAM.Name = "pbRAM";
-            this.pbRAM.Size = new System.Drawing.Size(417, 29);
+            this.pbRAM.Size = new System.Drawing.Size(406, 29);
             this.pbRAM.TabIndex = 32;
             // 
             // metroLabel3
@@ -71,9 +71,9 @@
             // 
             this.lbxInfo.FormattingEnabled = true;
             this.lbxInfo.ItemHeight = 16;
-            this.lbxInfo.Location = new System.Drawing.Point(72, 124);
+            this.lbxInfo.Location = new System.Drawing.Point(72, 122);
             this.lbxInfo.Name = "lbxInfo";
-            this.lbxInfo.Size = new System.Drawing.Size(417, 68);
+            this.lbxInfo.Size = new System.Drawing.Size(406, 212);
             this.lbxInfo.TabIndex = 34;
             // 
             // Memory

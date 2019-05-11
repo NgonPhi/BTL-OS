@@ -80,6 +80,10 @@ namespace Main
             [DllImport("kernel32.dll", SetLastError = true)]
             [return: MarshalAs(UnmanagedType.Bool)]
             public static extern bool TerminateProcess(IntPtr hProcess, uint uExitCode);
+
+            // Hàm lấy thông số -- > có số lượng process
+            [DllImport("psapi.dll", SetLastError = true)]
+            public static extern bool GetPerformanceInfo(out PERFORMANCE_INFORMATION pPerformanceInformation, uint cb);
         }
 
         public Task()
@@ -99,7 +103,13 @@ namespace Main
                     lbxProcess.Items.Add("> " + procs[i].ProcessName); // Tạo danh sách tương tự task manager
                 }
             }
-            lbProcess.Text = procs.Length.ToString();
+            PERFORMANCE_INFORMATION perfInfo = new PERFORMANCE_INFORMATION();
+            uint input_size = (uint)System.Runtime.InteropServices.Marshal.SizeOf(typeof(PERFORMANCE_INFORMATION));
+            if (API.GetPerformanceInfo(out perfInfo, input_size))
+            {
+                lbProcess.Text = perfInfo.ProcessCount.ToString();
+            }
+            
         }
 
         private void KillProcess(int index)
