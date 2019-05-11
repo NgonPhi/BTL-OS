@@ -90,6 +90,7 @@
             this.Name = "Memory";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Memory";
+            this.Load += new System.EventHandler(this.Memory_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

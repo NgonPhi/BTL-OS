@@ -47,23 +47,24 @@ namespace Main
     {
         class API
         {
+            // Hàm lấy thông tin trạng thái Memory
             [return: MarshalAs(UnmanagedType.Bool)]
             [DllImport("Kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
             public static extern bool GlobalMemoryStatusEx(ref MEMORYSTATUSEX lpBuffer);
 
+            // Hàm lấy thông tin hiệu suất
             [DllImport("psapi.dll", SetLastError = true)]
             public static extern bool GetPerformanceInfo(out PERFORMANCE_INFORMATION pPerformanceInformation, uint cb);
         }
 
         public Memory()
         {
-            InitializeComponent();
-            GetMemoryInfo();
-            timer.Start();
+            InitializeComponent();            
         }
 
         private void GetMemoryInfo()
         {
+            // Lấy thông tin trạng thái Memory
             MEMORYSTATUSEX statEX = new MEMORYSTATUSEX();
             statEX.dwLength = (uint)Marshal.SizeOf(typeof(MEMORYSTATUSEX));
             lbxInfo.Items.Clear();
@@ -77,6 +78,8 @@ namespace Main
                 lbxInfo.Items.Add("Kích thước (Ảo) đã sử dụng: " + (statEX.ullTotalPageFile - statEX.ullTotalPhys) + " bytes");
                 lbxInfo.Items.Add("Kích thước (Ảo) khả dụng: " + (statEX.ullAvailPageFile - statEX.ullAvailPhys) + " bytes");
             }
+
+            // Hàm lấy thông tin hiệu suất
             PERFORMANCE_INFORMATION perfInfo = new PERFORMANCE_INFORMATION();
             uint input_size = (uint)System.Runtime.InteropServices.Marshal.SizeOf(typeof(PERFORMANCE_INFORMATION));
             if (API.GetPerformanceInfo(out perfInfo, input_size))
@@ -87,13 +90,19 @@ namespace Main
                 lbxInfo.Items.Add("Kích thước 1 trang: " + perfInfo.PageSize.ToUInt64() + " bytes");
                 lbxInfo.Items.Add("Số handle: " + perfInfo.HandleCount);
                 lbxInfo.Items.Add("Số process: " + perfInfo.ProcessCount);
-                lbxInfo.Items.Add("Số thread: " + perfInfo.HandleCount);
+                lbxInfo.Items.Add("Số thread: " + perfInfo.ThreadCount);
             }
         }
 
         private void timer_Tick(object sender, EventArgs e)
         {
             GetMemoryInfo();
+        }
+
+        private void Memory_Load(object sender, EventArgs e)
+        {
+            GetMemoryInfo();
+            timer.Start();
         }
     }
 }
