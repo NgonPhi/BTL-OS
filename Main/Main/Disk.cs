@@ -125,7 +125,7 @@ namespace Main
         {
             string path = @txbDD.Text;
             int rs = API.ShowMessage(0, "Ban co muon xoa thu muc khong?", "Thong bao", 1);
-            if(rs == 1)
+            if (rs == 1)
                 if (!API.RemoveDirectory(@"\\?\" + path))
                     API.ShowMessage(0, "Loi duong dan / ton tai thu muc !", "Thong bao", 0);
         }

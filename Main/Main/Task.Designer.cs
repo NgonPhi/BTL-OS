@@ -105,7 +105,7 @@
             this.btnCreateProcess.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCreateProcess.Location = new System.Drawing.Point(351, 290);
             this.btnCreateProcess.Name = "btnCreateProcess";
-            this.btnCreateProcess.Size = new System.Drawing.Size(157, 36);
+            this.btnCreateProcess.Size = new System.Drawing.Size(179, 36);
             this.btnCreateProcess.TabIndex = 4;
             this.btnCreateProcess.Text = "Create Process";
             this.btnCreateProcess.UseVisualStyleBackColor = true;
@@ -127,7 +127,7 @@
             this.btnKillProcess.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnKillProcess.Location = new System.Drawing.Point(350, 343);
             this.btnKillProcess.Name = "btnKillProcess";
-            this.btnKillProcess.Size = new System.Drawing.Size(158, 35);
+            this.btnKillProcess.Size = new System.Drawing.Size(180, 35);
             this.btnKillProcess.TabIndex = 13;
             this.btnKillProcess.Text = "Kill Process";
             this.btnKillProcess.UseVisualStyleBackColor = true;
@@ -158,7 +158,7 @@
             this.btnGetProcessTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGetProcessTime.Location = new System.Drawing.Point(351, 395);
             this.btnGetProcessTime.Name = "btnGetProcessTime";
-            this.btnGetProcessTime.Size = new System.Drawing.Size(158, 35);
+            this.btnGetProcessTime.Size = new System.Drawing.Size(179, 35);
             this.btnGetProcessTime.TabIndex = 21;
             this.btnGetProcessTime.Text = "Get Process Time";
             this.btnGetProcessTime.UseVisualStyleBackColor = true;

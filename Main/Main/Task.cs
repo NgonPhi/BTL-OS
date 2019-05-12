@@ -55,26 +55,40 @@ namespace Main
         {
             // Hàm hiển thị thông báo : type : 0 (OK) / 1 (OK - Cancel)
             [DllImport("user32.dll", EntryPoint = "MessageBox")]
-            public static extern int ShowMessage(int hWnd, string text, string caption, uint type);
+            public static extern int ShowMessage(
+                                    int hWnd, 
+                                    string text, 
+                                    string caption, 
+                                    uint type
+            );
 
             // Hàm tạo process theo đường dẫn tới ứng dụng
             [DllImport("kernel32.dll")]
-            public static extern bool CreateProcess(string lpApplicationName, string lpCommandLine, IntPtr lpProcessAttributes, IntPtr lpThreadAttributes,
-                            bool bInheritHandles, uint dwCreationFlags, IntPtr lpEnvironment,
-                            string lpCurrentDirectory, ref STARTUPINFO lpStartupInfo, out PROCESS_INFORMATION lpProcessInformation);
+            public static extern bool CreateProcess(
+                                    string lpApplicationName, 
+                                    string lpCommandLine, 
+                                    IntPtr lpProcessAttributes, 
+                                    IntPtr lpThreadAttributes, 
+                                    bool bInheritHandles, 
+                                    uint dwCreationFlags, 
+                                    IntPtr lpEnvironment, 
+                                    string lpCurrentDirectory, 
+                                    ref STARTUPINFO lpStartupInfo, 
+                                    out PROCESS_INFORMATION lpProcessInformation
+            );
 
             // Hàm lấy thông số process (Time) theo process handle
             [DllImport("Kernel32",
-                       EntryPoint = "GetProcessTimes",
-                       ExactSpelling = true,
-                       CharSet = CharSet.Ansi,
-                       SetLastError = true)]
+                        EntryPoint = "GetProcessTimes",
+                        ExactSpelling = true,
+                        CharSet = CharSet.Ansi,
+                        SetLastError = true)]
             public static extern bool GetProcessTimes(
-                                IntPtr hProcess,
-                                ref long lpCreationTime,
-                                ref long lpExitTime,
-                                ref long lpKernelTime,
-                                ref long lpUserTime);
+                                    IntPtr hProcess,
+                                    ref long lpCreationTime,
+                                    ref long lpExitTime,
+                                    ref long lpKernelTime,
+                                    ref long lpUserTime);
 
             // Hàm hủy Process
             [DllImport("kernel32.dll", SetLastError = true)]
